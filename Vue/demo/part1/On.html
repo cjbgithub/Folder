@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <title>on</title>
+</head>
+<body>
+<div id="app">
+    {{ score }}
+    <hr>
+    <button v-on:click="add">加分</button>
+    <button @click="sub">减分</button>
+    <input type="text" v-on:keyup.enter="onEnter" v-model="addScore">
+    <input type="text" @keyup.13="onEnter" v-model="addScore">
+    <p>v-on:click, @click, v-on:keyup.enter, @keyup.13</p>
+</div>
+
+<script type="text/javascript">
+    var app = new Vue({
+        el: "#app",
+        data: {
+            score: 1,
+            addScore: ""
+        },
+        methods: {
+            add: function () {
+                this.score++;
+            },
+            sub: function () {
+                this.score--;
+            },
+            onEnter: function () {
+                this.score += parseInt(this.addScore);
+            }
+        }
+    })
+</script>
+</body>
+</html>

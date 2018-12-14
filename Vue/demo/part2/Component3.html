@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <title>Father and Children Component</title>
+</head>
+<body>
+<div id="app">
+    <component1></component1>
+</div>
+
+<script type="text/javascript">
+    var city = {
+        template: `<div style="color: red">子组件</div>`
+    }
+
+    var component1 = {
+        template: `<div>Panda from China!<city></city></div>`,
+        components: {
+            "city": city
+        }
+    }
+
+    var app = new Vue({
+        el: "#app",
+        components: {
+            "component1": component1
+        }
+    })
+</script>
+</body>
+</html>

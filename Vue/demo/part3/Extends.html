@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <title>Extends</title>
+</head>
+<body>
+<div id="app">
+    <p>${ message }</p>
+    <p>
+        <button @click="add">add</button>
+    </p>
+</div>
+
+<script type="text/javascript">
+    var extendObj = {
+        methods: {
+            add: function () {
+                console.log("add");
+            }
+        },
+        updated: function () {
+            console.log("扩展updated方法");
+        }
+    }
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            message: 11
+        },
+        methods: {
+            add: function () {
+                return this.message++;
+            }
+        },
+        updated: function () {
+            console.log("原生updated方法");
+        },
+        extends: extendObj,
+        delimiters: ["${", "}"]
+    })
+</script>
+</body>
+</html>

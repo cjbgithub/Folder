@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <title>Directive</title>
+</head>
+<body>
+<div id="app">
+    <div v-colordirective="color">{{ num }}</div>
+    <p><button @click="add">ADD</button></p>
+    <p><button onclick="unbind()">Unbind</button></p>
+</div>
+
+<script type="text/javascript">
+    function unbind(){
+        app.$destroy();
+    }
+
+    Vue.directive("colordirective", {
+        bind: function (el, binding) {
+            console.log("1 - bind");
+            el.style = "color: " + binding.value;
+        },
+        inserted: function () {
+            console.log("2 - inserted");
+        },
+        update: function () {
+            console.log("3 - update");
+        },
+        componentUpdated: function () {
+            console.log("4 - componentUpdated");
+        },
+        unbind: function () {
+            console.log("5 - unbind");
+        }
+    });
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            num: 10,
+            color: "red"
+        },
+        methods: {
+            add: function () {
+                this.num++;
+            }
+        }
+    })
+</script>
+</body>
+</html>

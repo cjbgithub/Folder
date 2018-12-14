@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <script type="text/javascript" src="../../assets/js/jquery-3.3.1.min.js"></script>
+    <title>内置组件-slot</title>
+</head>
+<body>
+<div id="app">
+    <temp>
+        <span slot="url">{{ dataObj.url }}</span>
+        <span slot="name">{{ dataObj.name }}</span>
+        <span slot="favorite">跑步</span>
+    </temp>
+</div>
+<template id="temp">
+    <div>
+        <p>网址：<slot name="url"></slot></p>
+        <p>姓名：<slot name="name"></slot></p>
+        <p>喜好：<slot name="favorite"></slot></p>
+    </div>
+</template>
+
+<script type="text/javascript">
+    var temp = {
+        template: "#temp"
+    }
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            dataObj: {
+                url: "http://jspang.com",
+                name: "大卫",
+                favorite: "running"
+            }
+        },
+        components: {
+            "temp": temp
+        }
+    })
+</script>
+</body>
+</html>

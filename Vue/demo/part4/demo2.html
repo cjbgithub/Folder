@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <script type="text/javascript" src="../../assets/js/jquery-3.3.1.min.js"></script>
+    <title>实例方法</title>
+</head>
+<body>
+<div id="app"></div>
+<p>
+    <button onclick="destroy()">destroy</button>
+    <button onclick="reload()">reload</button>
+    <button onclick="tick()">tick</button>
+</p>
+
+<script type="text/javascript">
+    var extendObj = Vue.extend({
+        template: `<div>{{ score }}</div>`,
+        data: function () {
+            return {
+                score: 12
+            }
+        },
+        mounted: function () {
+            console.log("mounted");
+        },
+        destroyed: function () {
+            console.log("destroyed");
+        },
+        updated: function () {
+            console.log("updated");
+        }
+    })
+
+    var vm = new extendObj().$mount("#app");
+
+    function destroy() {
+        vm.$destroy();
+    }
+
+    function reload() {
+        vm.$forceUpdate();
+    }
+
+    function tick() {
+        vm.score = "update message info";
+        vm.$nextTick(function () {
+            console.log("message更新完成后被调用");
+        })
+    }
+</script>
+</body>
+</html>

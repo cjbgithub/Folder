@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <title>Computed</title>
+</head>
+<body>
+<div id="app">
+    <p>{{ newPrice }}</p>
+    <ul>
+        <li v-for="item in reverseNews">{{ item }}</li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    var newLists = [
+        {title: "蜥蜴在光照下会去哪里", date: "2018/2/12"},
+        {title: "贝克汉姆在白宫的演讲", date: "2018/3/29"},
+        {title: "数据结构应用实例", date: "2018/4/23"},
+        {title: "《明朝那些事儿》", date: "2018/4/22"},
+        {title: "艺术与哲学家的区别", date: "2018/5/24"},
+    ];
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            price: 12,
+            newList: newLists
+        },
+        computed: {
+            newPrice: function () {
+                return this.price = "￥" + this.price + "元";
+            },
+            reverseNews: function () {
+                return this.newList.reverse();
+            }
+        }
+    })
+</script>
+</body>
+</html>

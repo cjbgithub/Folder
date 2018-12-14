@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <title>Hello World</title>
+</head>
+<body>
+<div id="app">
+    <p>温度：{{ temperature }}</p>
+    <p>穿衣：{{ cloth }}</p>
+    <p>
+        <button @click="increase()">升温</button>
+        <button @click="reduce()">降温</button>
+    </p>
+</div>
+
+<script type="text/javascript">
+    var clothes = ["羽绒服", "夹克", "短袖"];
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            temperature: 12,
+            cloth: "夹克"
+        },
+        methods: {
+            increase: function () {
+                return this.temperature += 5;
+            },
+            reduce: function () {
+                return this.temperature -= 4;
+            }
+        },
+        watch: {
+            temperature: function (newVal, oldVal) {
+                if (newVal >= 26) {
+                    this.cloth = clothes[2];
+                } else if (newVal <= 0) {
+                    this.cloth = clothes[0];
+                } else {
+                    this.cloth = clothes[1];
+                }
+            }
+        }
+    });
+
+    app.$watch("temperature", function (newVal, oldVal) {
+        newVal >= 26 ? this.cloth = clothes[2] : (newVal <= 0 ? this.cloth = clothes[0] : this.cloth = clothes[1]);
+    });
+</script>
+</body>
+</html>

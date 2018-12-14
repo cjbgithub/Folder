@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <title>Bind</title>
+</head>
+<body>
+<div id="app">
+    <img v-bind:src="imgSrc" width="300px"/>
+    <p><a :href="webUrl" target="_blank">bing网站</a></p>
+
+    <hr>1.绑定class<hr>
+
+    <div v-bind:class="className">1.绑定css样式</div>
+
+    <hr>2.绑定css<hr>
+
+    <p><label><input type="checkbox" v-model="isOk">改变布尔值</label>&emsp;data={{ isOk }}</p>
+    <div :class="{classA:isOk}">2.判断绑定css样式</div>
+    <div :class="isOk ? classA : classB">3.三元运算符绑定css样式</div>
+    <div :class="[classA, classB]">4.数组绑定css样式</div>
+
+    <hr>3.绑定Style<hr>
+
+    <div :style="{color: color, fontSize: fontSize}">5.绑定Style</div>
+    <div :style="styObj">6.用对象绑定Style</div>
+</div>
+<style>
+    .classA {
+        color: red;
+    }
+    .classB {
+        font-size: 150%;
+    }
+</style>
+
+<script type="text/javascript">
+    var app = new Vue({
+        el: "#app",
+        data: {
+            imgSrc: "https://tse1-mm.cn.bing.net/th?id=OET.e3e14ed6b1754b339d5e8ec4713abf71&w=272&h=135&c=7&rs=1&o=5&pid=1.9",
+            webUrl: "http://www.bing.com",
+            className: "classA",
+            isOk: "",
+            classA: "classA",
+            classB: "classB",
+            color: "green",
+            fontSize: "20px",
+            styObj: {
+                color: "gray",
+                fontSize: "30px"
+            }
+        }
+    })
+</script>
+</body>
+</html>

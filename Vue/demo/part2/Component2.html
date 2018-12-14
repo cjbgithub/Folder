@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <title>Props属性</title>
+</head>
+<body>
+<div id="app">
+    <panda v-bind:here="message" from-here="China"></panda>
+</div>
+
+<script type="text/javascript">
+    var app = new Vue({
+        el: "#app",
+        data: {
+            message: "SiChuan"
+        },
+        components: {
+            "panda": {
+                template: `<div style="color:red;">Panda from {{ here }} in {{ fromHere }}.</div>`,
+                // 带'-'的属性比如'from-here'必须使用小驼峰命名法'fromHere'
+                props: ["here", "fromHere"]
+            }
+        }
+    })
+</script>
+</body>
+</html>

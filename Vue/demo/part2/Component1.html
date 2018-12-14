@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <title>Component</title>
+</head>
+<body>
+<div id="app">
+    <component1></component1>
+    <component2></component2>
+</div>
+
+<script type="text/javascript">
+    Vue.component("component1", {
+        template: `<div style="color:red;">全局化注册的component1标签</div>`
+    })
+
+    var app = new Vue({
+        el: "#app",
+        components: {
+            "component2": {
+                template: `<div style="color:green;">局部化注册的component2标签</div>`
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <title>Set全局操作</title>
+</head>
+<body>
+<div id="app">
+    {{ count }}
+    <ul>
+        <li v-for="item in arrays">{{ item }}</li>
+    </ul>
+</div>
+
+<p><button onclick="add()">add</button></p>
+
+<script type="text/javascript">
+    function add() {
+        // 1.用Vue.set改变
+        Vue.set(outData, "count", 2);
+        // 2.用Vue对象的方法添加
+        app.count++;
+        // 3.直接操作外部数据
+        outData.count++;
+        // 操作数组
+        Vue.set(app.arrays, 1, "dd");
+    }
+
+    var outData = {
+        count: 1,
+        arrays: ["aaa", "bbb", "ccc"]
+    };
+
+    var app = new Vue({
+        el: "#app",
+        data: outData
+    });
+</script>
+</body>
+</html>

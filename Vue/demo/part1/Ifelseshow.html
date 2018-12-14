@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <title>if-else+show</title>
+</head>
+<body>
+<div id="app">
+    <div v-if="ok">加载</div>
+    <div v-else>不加载</div>
+    <div v-show="show">显示</div>
+</div>
+
+<script type="text/javascript">
+    var app = new Vue({
+        el: "#app",
+        data: {
+            ok: true,
+            show: true
+        }
+    })
+</script>
+</body>
+</html>

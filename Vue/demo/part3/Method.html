@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <title>Hello World</title>
+</head>
+<body>
+<div id="app">
+    <p>{{ score }}</p>
+    <!--1.传递参数；2.$event参数；-->
+    <p><button @click="add(2, $event)">score+=2</button></p>
+    <!--3.native给组件绑定构造器里的原生事件；-->
+    <p><btn  @click.native="add(3)"></btn></p>
+</div>
+<!--4.作用域外部调用构造器里面的方法。-->
+<button onclick="app.add(5)">score+=5</button>
+
+<script type="text/javascript">
+    var btn = {
+        template: `<button>组件ADD</button>`
+    }
+    var app = new Vue({
+        el: "#app",
+        data: {
+            score: 1
+        },
+        components:{
+          "btn": btn
+        },
+        methods: {
+            add: function (num, event) {
+                if (event != null) console.log(event);
+                if (num != null) {
+                    return this.score += num;
+                } else {
+                    return this.score++;
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <title>Mixins</title>
+</head>
+<body>
+<div id="app">
+    <p>{{ score }}</p>
+    <p>
+        <button @click="add">Add score</button>
+    </p>
+</div>
+
+<script type="text/javascript">
+    var addLog = {
+        updated: function () {
+            console.log("执行混入方法,score值改变为" + this.score);
+        }
+    }
+
+    Vue.mixin({
+        updated: function () {
+            console.log("执行全局混入的updated方法");
+        }
+    })
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            score: 12
+        },
+        methods: {
+            add: function () {
+                this.score++;
+            }
+        },
+        updated: function () {
+            console.log("执行原生的updated方法");
+        },
+        mixins: [addLog]
+    })
+</script>
+</body>
+</html>

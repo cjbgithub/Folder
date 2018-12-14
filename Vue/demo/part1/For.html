@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <title>for</title>
+</head>
+<body>
+<div id="app">
+    <div v-for="array in sortArrays">{{ array }}</div>
+    <hr>
+    <div v-for="(student, index) in sortStudents">{{ index }} - {{ student.name }} : {{ student.age}}</div>
+</div>
+
+<script type="text/javascript">
+    var app = new Vue({
+        el: "#app",
+        data: {
+            arrays: [1, 90, 12, 44, 23, 35, 53, 62, 80, 91, 89, 4, 100],
+            students: [
+                {name: "Linda", age: 20},
+                {name: "Jake", age: 22},
+                {name: "David", age: 34},
+                {name: "Hash", age: 19}
+            ]
+        },
+        computed: {
+            sortArrays: function () {
+                return this.arrays.sort(sortNum);
+            },
+            sortStudents: function () {
+                return sortObj(this.students, "age");
+            }
+        }
+    })
+
+    function sortNum(a, b) {
+        return a - b;
+    }
+
+    function sortObj(obj, key) {
+        return obj.sort(function (a, b) {
+            var x = a[key];
+            var y = b[key];
+            return x - y;
+        })
+    }
+</script>
+</body>
+</html>

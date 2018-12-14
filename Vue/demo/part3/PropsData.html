@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <title>PropsData</title>
+</head>
+<body>
+<header></header>
+
+<script type="text/javascript">
+    var extendObj = Vue.extend({
+        template: `<p>{{ message }} -- {{ count }}</p>`,
+        data: function () {
+            return {
+                message: "Hello, I am Header!"
+            }
+        },
+        props: ["count"]
+    })
+
+    new extendObj({propsData: {count: 12}}).$mount("header");
+</script>
+</body>
+</html>
