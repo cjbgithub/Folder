@@ -5,9 +5,9 @@
 
 # 2.文本
 ## 2.1加粗（ctrl+B）
-**加粗内容**，还有__这种格式__gawerg_gawer_
+**加粗内容**
 ## 2.2斜体(ctrl+I)
-*斜体内容*，还有_这种格式_
+*斜体内容*
 ## 2.3删除线
 ~~删除线~~内容
 ## 3.4加粗且斜体
@@ -53,6 +53,7 @@ print(b)
 # 8.表情、图片
 :+1:
 :o:
+
 ![keybord](https://github.com/cjbgithub/Folder/blob/master/keyboard.png "鼠标选中显示信息")
 
 # 9.忽略markdown关键字
