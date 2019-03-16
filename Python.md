@@ -74,13 +74,16 @@ print("姓名%s,年龄%d"%(name, age))
 |%G|%f和%E的简写|
 
 ### 1.6.输入
-python2:input("please input something.")、raw_input("please input something.")  
-python3:input("please input something.")  
+python2：input("please input something.")、raw_input("please input something.")  
+python3：input("please input something.")  
 python3中的input()和python2中的raw_input()功能一样  
 
 ### 1.7.运算符
 + 算数运算符(a=10,b=20)
 
+<style>table th:first-of-type {width: 100px;}</style>
+<style>table th:nth-of-type(2) {width: 400px;}</style>
+<style>table th:nth-of-type(3) {width: 100px;}</style>
 |运算符|描述|实例|
 |:---:|:---|:---|
 |+|加法|a+b=30|
@@ -124,7 +127,7 @@ python3中的input()和python2中的raw_input()功能一样
 + 逻辑运算符
 
 |运算符|逻辑表达式|描述|
-|:---:|:---:|:---|:---|
+|:---:|:---:|:---|
 |and|x and y|布尔"与"，x为True且y为True则返回True|
 |or|x or y|布尔"或"，x为False且y为False则返回False|
 |not|not x|布尔"非"|
