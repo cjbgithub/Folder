@@ -23,12 +23,12 @@ int b = 20
 print(b)
 ```
 
-# 5.链接(\[文字\]\(url \"altmessge\"\))
+# 5.链接(\[文字\](url "altmessage"))
 [链接到百度](http://www.baidu.com "baidu")
 
-[链接到百度][1]
-[链接到bing][c2]
-[还是百度][1]
+[链接到百度][1] 
+[链接到bing][c2] 
+[还是百度][1] 
 
 [1]:https://www.baidu.com
 [c2]:https://www.bing.com
