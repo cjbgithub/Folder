@@ -48,16 +48,18 @@ print(b)
 # 8.表情、图片
 :+1:
 :o:
-![keybord](https://github.com/cjbgithub/Folder/keybord.png "鼠标选中显示信息")
+![keybord](https://github.com/cjbgithub/Folder/keyboard.png "鼠标选中显示信息")
 
 # 9.忽略markdown关键字
 \*\*取消markdown关键字
 
 # 表格
+第二行的-要三个或三个以上
+
 |表头一|表头二|表头三|左对齐|居中对齐|右对齐|
-|---|---|---|---|:-|:--:|-:|
+|----|----|----|:---|:----:|----:|
 |内容一|内容二|内容三|向左|居中|向右|
-|内容三|内容四|12|word|chejb@174.com|ctri+b|
+|内容三|内容四|内容五|key word|center|chejb@174.com|
 
 
 
