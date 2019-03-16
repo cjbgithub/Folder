@@ -5,7 +5,7 @@ git log
 git log
 
 ## 单行显示每天日志
-git log --onelie
+git log --oneline
 
 ## 显示length条日志
 git log -[length]
@@ -36,6 +36,7 @@ git log -p fileName.xxx
 
 ## 将日志输出到文件
 git log --name-status --oneline > logfile.txt
+
 
 ```
 
