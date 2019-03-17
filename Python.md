@@ -381,6 +381,7 @@ for index, item in enumerate(dict.items()):
 |*|复制|字符串、列表、元组|"Hi!"*4|"Hi!Hi!Hi!Hi!"|
 |in|元素是否存在|字符串、列表、元组、字典|3 in (1, 2, 3)|True|
 |not in|元素是否不存在|字符串、列表、元组、字典|4 not in (1, 2, 3)|True|
+
 注意，in在对字典操作时，判断的是字典的键
 
 > python内置函数
@@ -392,6 +393,7 @@ for index, item in enumerate(dict.items()):
 |3|max(item)|返回容器中元素最大值|
 |4|min(item)|返回容器中元素最小值|
 |5|del(item)|删除变量|
+
 注意：cmp在比较字典数据时，先比较键，再比较值。len在操作字典数据时，返回的是键值对个数。
 
 ### 3.5.可变类型与不可变类型
@@ -406,6 +408,8 @@ for index, item in enumerate(dict.items()):
 
 ```
 # 交换两个变量的值
+a = 2
+b = 3
 a, b = (b, a)
 a = a + b
 b = a - b
@@ -413,6 +417,162 @@ a = a - b
 ```
 
 ## 4.函数
+```
+# 定义函数
+def printInfo():
+    "函数文档说明" # 还可以用 """函数文档说明""" 这种格式
+    print("hello world")
+    print(100 + 200)
+# 调用函数
+printInfo()
+# 查看函数文档说明
+help(printInfo)
+```
+定义函数时的参数为“形参”  
+调用函数时的参数为“实参”  
+函数也可以嵌套调用，即在函数A的定义中调用函数B，然后调用函数A
+
+定义在函数内部的变量称为局部变量  
+定义在函数外部的变量称为全局变量  
+对于**不可变类型**，因其指向的数据不可修改，所以需要加`global variableName`才可以修改局部变量    
+对于**可变类型**，因其引用的数据可修改，因此不使用`global`也可以修改局部变量
+
+函数返回值可以是多个，原理同元组
+
+> 缺省参数
+
+调用函数，缺省参数没有传入时使用默认值
+```
+def info(name, age=35):
+    return name, age # 等价于(name, age)
+name, age = info("miki")
+print(name, age)
+print(info(age=12, name="xiaoming"))
+```
+注意：带有默认值的参数一定要位于参数列表的最后面。
+
+> 不定长参数
+
+不定长参数接受函数调用时传入的参数比定义的参数多出来的参数  
+*args存放所有未命名的变量参数，是一个元组  
+**kwargs存放命名参数，即形如 `key=value`的参数，kwargs为字典
+```
+def demo(a, b, *args, **kwargs):
+    """不定长参数"""
+    print("a=", a)
+    print("b=", b)
+    print("args=", args)
+    print("kwargs:")
+    for key, value in kwargs.items():
+        print(key, "=", value)
+demo(1, 2, 3, 4, 5, m=6, n=7, p=8)  # 注意传递的参数对应
+c = (3, 4, 5)
+d = {"m":6, "n":7, "p":8}
+demo(1, 2, *c, **d)     # 注意元组与字典的传参方式
+demo(1, 2, c, d)        # 注意不加星号与上面的区别
+```
+
+> 引用传参
+
+Python中函数参数是引用传递  
+对于不可变类型，因变量不能被修改，不会影响到变量自身  
+对于可变类型，函数体中的运算有可能会更改传入的参数变量
+```
+def demo(a, b, c, d):
+    """自增"""
+    a = a + a
+    b += b
+    c = c + c # 不能修改list
+    d += d
+a_int = 1
+b_int = 2
+c_list = [1, 2]
+d_list = [3, 4]
+demo(a_int, b_int, c_list, d_list)
+print(a_int)
+print(b_int)
+print(c_list)
+print(d_list)
+```
+
+> 递归函数
+
+自身循环调用的函数是递归函数
+```
+def demo(num):
+    """num的阶乘：n!"""
+    if num > 1:
+        print(num, end="*") 
+        return num * demo(num-1)
+    elif num == 1:
+        print(num, end=" = ") 
+        return 1
+    else:
+        print("Num is Error.")
+print(demo(10))
+```
+
+> 匿名函数
+```
+lambda [arg1 [, arg2, ...argn]: expression
+```
+Lambda函数能接受任何数量的参数但是只能返回一个表达式的值  
+匿名函数不能直接用print，因为lambda需要一个表达式
+```
+stus = [
+    {"name":"zhangsan", "age":18},
+    {"name":"lisi", "age":24},
+    {"name":"wangwu", "age":10}
+]
+stus.sort(key = lambda x: x['name'])    # 按name排序
+stus.sort(key = lambda x: x['age'])     # 按age排序
+```
+
+## 5.文件操作
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
