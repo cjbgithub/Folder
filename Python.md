@@ -454,8 +454,8 @@ print(info(age=12, name="xiaoming"))
 > 不定长参数
 
 不定长参数接受函数调用时传入的参数比定义的参数多出来的参数  
-*args存放所有未命名的变量参数，是一个元组  
-**kwargs存放命名参数，即形如 `key=value`的参数，kwargs为字典
+*args 存放所有未命名的变量参数，是一个元组  
+**kwargs 存放命名参数，即形如 `key=value`的参数，kwargs为字典
 ```
 def demo(a, b, *args, **kwargs):
     """不定长参数"""
@@ -529,24 +529,116 @@ stus.sort(key = lambda x: x['age'])     # 按age排序
 ```
 
 ## 5.文件操作
+### 5.1.文件打开、关闭及定位
+> 打开文件
+`f = open('test.txt', 'w')`
 
+|访问模式|说明|
+|:---:|:---|
+|r|只读，文件指针指向文件开头。默认打开模式|
+|w|写入，文件存在时覆盖重写，文件不存在时创建文件|
+|a|追加，文件存在时末尾追加，文件不存在时创建文件并写入|
+|rb|只读，二进制格式打开，文件指针指向文件开头|
+|wb|写入，二进制格式打开，文件存在时覆盖重写，文件不存在时创建文件|
+|ab|追加，二进制格式打开，文件存在时末尾追加，文件不存在时创建文件并写入|
+|r+|读写，文件指针指向文件开头|
+|w+|读写，文件存在时覆盖重写，文件不存在时创建文件|
+|a+|读写，文件存在时末尾追加，文件不存在时创建文件并写入|
+|rb+|读写，二进制格式打开，文件指针指向文件开头|
+|wb+|读写，二进制格式打开，文件存在时覆盖重写，文件不存在时创建文件|
+|ab+|读写，二进制格式打开，文件存在时末尾追加，文件不存在时创建文件并写入|
 
+> 读写文件
+```
+f.write("hwllo world...")
+f.read(5) # 每次读取5个字节
+f.readline() # 每次只读取一行数据
+f.readlines() # 将整个文件一次读取，返回以一行的数据为元素的一个列表
+```
 
+> 关闭文件
+`f.close()`
 
+> 文件备份
+```
+#coding=utf-8
+oldFileName = input("请输入需要拷贝的文件名字：")
+oldFile = open(oldFileName, 'r')
+if oldFile:
+    # 提取文件的后缀
+    fileFlagNum = oldFileName.rfind('.')
+    if fileFlagNum > 0:
+        fileFlag = oldFileName[fileFlagNum:] # 文件后缀名
+    
+    # 组织新的文件名
+    newFileName = oldFileName[:fileFlagNum] + '[复件]' + fileFlag
+    
+    # 创建新的文件
+    newFile = open(newFileName, 'w')
+    
+    # 把旧文件中数据一行一行的复制到新文件中
+    for lineContent in oldFile.readlines():
+        newFile.write(lineContent)
+    
+    # 关闭文件
+    newFile.close()
+    oldFile.close()
+```
+> 文件定位
+1. tell() 定位当前位置
+2. seek(offset, from)定位到指定位置
+    + offset 偏移量
+    + from 0表示文件开头，1表示当前位置，2表示文件末尾
 
+### 5.2.文件重命名及删除
+> 文件重命名
+```
+import os
+os.rename("file1.txt", "newFile.txt")
+```
 
+> 删除文件
+```
+import os
+os.remove("file.txt")
+```
 
+### 5.3.文件夹操作
+```
+import os
+os.mkdir("dirName") # 创建文件夹
+os.getcwd()         # 获取当前目录
+os.chdir("../")     # 改变默认目录
+os.listdir("./")    # 获取目录列表
+os.rmdir("dirName") # 删除文件夹
+```
 
+### 5.4.批量修改文件名
+```
+#coding=utf-8
+import os
+funFlag = 1 # 1表示添加标志，2表示删除标志
 
+folderName = "./renameDir/"
 
+# 获取指定路径的所有文件名
+dirList = os.listdir(folderName)
 
+# 遍历出所有文件名字
+for name in dirList:
+    print(name)
+    
+    if funFlag == 1:
+        newName = "[添加标志]-" + name
+    elif funFlag == 2:
+        num = len("[添加标志]-")
+        newName = name[num:]
+    print(newName)
 
+    os.rename(folderName+name, folderName+newName)
+```
 
-
-
-
-
-
+## 6.面向对象
 
 
 
