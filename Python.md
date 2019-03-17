@@ -30,7 +30,7 @@ print("hello world!")
   - False
 + str
 + list
-+ tuple(元祖)
++ tuple(元组)
 + Directory
 
 查看变量类型：`type(variableName)`
@@ -138,7 +138,7 @@ python3中的input()和python2中的raw_input()功能一样
 |str(x)|将对象x转换为字符串|
 |repr(x)|将对象x转换为表达式字符串|
 |**eval(x)**|用来计算在字符串中的有效Python表达式，并返回一个对象|
-|tuple(s)|将序列s转换为一个元祖|
+|tuple(s)|将序列s转换为一个元组|
 |list(s)|将序列s转换为一个列表|
 |chr(x)|将一个整数转换为一个字符|
 |unichar(x)|将一个整数转换为Unicode字符|
@@ -234,7 +234,7 @@ while i <= 9:
     print()
 ```
 
-## 3.字符串、列表、元祖、字典
+## 3.字符串、列表、元组、字典
 ### 3.1.字符串
 字符串是用双引号（`a="hello"`）或单引号（`b='world'`）定义的数据  
 字符串下表索引(index)：0 -> len(str)
@@ -260,7 +260,7 @@ print(name[::-1]) # 字符串反转
 
 > 字符串常见操作
 
-|序号|语法|描述|
+|序号|方法|描述|
 |:---:|:---|:---|
 |1|strings.**find**(str, start=0, end=len(strings))|查找字符串并返回索引值，没有返回-1|
 |2|strings.**index**(str, start=0, end=len(strings))|跟find()方法一样，没有时报异常|
@@ -327,8 +327,9 @@ while i < len(listA):
    + sort 将list按特定顺序进行排序，默认由小到大参数`reverse=True`可改为倒序，由大到小
 
 ### 3.3.元组、字典
-元组语法格式：`(tuple1, tuple2, tuple3, ...)`
-元组**不可修改**，访问用`tuple[index]`，还有count，index函数。一个元素的元组：`a = (10,)`
+元组语法格式：`(tuple1, tuple2, tuple3, ...)`元组**不可修改**  
+访问元组`tuple[index]`，还可以使用count，index函数  
+一个元素的元组：`a = (10,)`  
 
 字典语法格式`{"key1": "value2", "key2": "value2"}`
 
@@ -370,6 +371,65 @@ for key, value in dict.items():
 for index, item in enumerate(dict.items()):
     print(index, item) # 带下标索引输出
 ```
+
+### 3.4.公共方法
+> 运算符
+
+|运算符|描述|支持的数据类型|python表达式|结果|
+|:---|:---|:---|:---|:---|
+|+|合并|字符串、列表、元组|[1, 2] + [3, 4]|[1, 2, 3, 4]|
+|*|复制|字符串、列表、元组|"Hi!"*4|"Hi!Hi!Hi!Hi!"|
+|in|元素是否存在|字符串、列表、元组、字典|3 in (1, 2, 3)|True|
+|not in|元素是否不存在|字符串、列表、元组、字典|4 not in (1, 2, 3)|True|
+注意，in在对字典操作时，判断的是字典的键
+
+> python内置函数
+
+|序号|方法|描述|
+|:---:|:---|:---|
+|1|cmp(item1, item2)|比较两个值|
+|2|len(item)|计算容器中元素个数|
+|3|max(item)|返回容器中元素最大值|
+|4|min(item)|返回容器中元素最小值|
+|5|del(item)|删除变量|
+注意：cmp在比较字典数据时，先比较键，再比较值。len在操作字典数据时，返回的是键值对个数。
+
+### 3.5.可变类型与不可变类型
+**引用**是变量在内存的地址，用`id(obj)`来查看
+1. 可变类型，值可以改变
+    + 列表 list
+    + 字典 dict
+2. 不可变类型，值不可以改变
+    + 数值类型 int, long, bool, float
+    + 字符串 str
+    + 元组 tuple
+
+```
+# 交换两个变量的值
+a, b = (b, a)
+a = a + b
+b = a - b
+a = a - b
+```
+
+## 4.函数
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
