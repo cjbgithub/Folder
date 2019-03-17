@@ -31,7 +31,7 @@ print("hello world!")
 + str
 + list
 + tuple(元祖)
-+ set
++ Directory
 
 查看变量类型：`type(variableName)`
 
@@ -81,9 +81,6 @@ python3中的input()和python2中的raw_input()功能一样
 ### 1.7.运算符
 + 算数运算符(a=10,b=20)
 
-<style>table th:first-of-type {width: 100px;}</style>
-<style>table th:nth-of-type(2) {width: 400px;}</style>
-<style>table th:nth-of-type(3) {width: 100px;}</style>
 |运算符|描述|实例|
 |:---:|:---|:---|
 |+|加法|a+b=30|
@@ -150,6 +147,93 @@ python3中的input()和python2中的raw_input()功能一样
 |oct(x)|将一个整数转换为一个八进制字符串|
 
 ## 2.判断语句和循环语句
+### 2.1.if语句
+```
+if condition 1 is True:
+    do codes 1
+# elif condition 2 is True:
+#     do codes 2
+# elif condition 3 is True:
+#     do codes 3
+else:
+    do other codes
+```
+if可以嵌套
+```
+if condition 1 is True:
+    if condition 1.1 is True:
+        do codes 1
+    elif condition 1.2 is True:
+        do codes 2
+    else:
+        do codes 3
+elif condition 2 is True:
+    if condition 2.1 is True:
+        do codes 4
+else:
+    do code 5
+```
+
+### 2.2.while循环
+```
+while condition is True:
+    codes 1
+    codes 2
+    ...
+# 实例99乘法表（i<=9为打印9行，j<=i为每行打印i次，\t为制表符）
+i = 1
+while i <= 9:
+    j = 1
+    while j <= i:
+        print("%d*%d=%d"%(i, j, i*j), end="\t")
+        j += 1
+    print()
+    i += 1
+```
+
+### 2.3.for循环
+```
+for variable_temp in set(listOrStr...):
+    do some codes...
+else:
+    循环条件不满足时执行的代码
+```
+
+### 2.4.break和continue
+break结束所属层后面的循环  
+continue跳过所属层当前循环，继续下一次循环  
+break/continue只能在循环中使用，除此以外不能单独使用  
+break/continue在嵌套循环中，只对临近层（所属层）循环起作用，其他层不起作用  
+```
+# for循环
+name = "dabusidexiaoqiang"
+for x in name:
+    print("-----")
+    if x == 'u':
+        continue
+    if x == "i":
+        break
+    print(x)
+
+# while循环
+i = 0
+while i <= 9:
+    i += 1
+    if i == 8:
+            break # 不打印第8行后面的
+    j = 0
+    while j <= i:
+        j += 1
+        if j == 5:
+            continue # 不打印第5列，即跳过第五列打印
+        print("(%d, %d)"%(i, j), end="\t")
+    print()
+```
+
+
+
+
+
 
 
 
