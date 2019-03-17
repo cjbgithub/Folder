@@ -180,7 +180,9 @@ while condition is True:
     codes 1
     codes 2
     ...
-# 实例99乘法表（i<=9为打印9行，j<=i为每行打印i次，\t为制表符）
+```
+> 实例99乘法表（i<=9为打印9行，j<=i为每行打印i次，\t为制表符）
+```
 i = 1
 while i <= 9:
     j = 1
@@ -204,8 +206,8 @@ break结束所属层后面的循环
 continue跳过所属层当前循环，继续下一次循环  
 break/continue只能在循环中使用，除此以外不能单独使用  
 break/continue在嵌套循环中，只对临近层（所属层）循环起作用，其他层不起作用  
+> for循环
 ```
-# for循环
 name = "dabusidexiaoqiang"
 for x in name:
     print("-----")
@@ -214,8 +216,10 @@ for x in name:
     if x == "i":
         break
     print(x)
+```
 
-# while循环
+> while循环
+```
 i = 0
 while i <= 9:
     i += 1
@@ -230,15 +234,119 @@ while i <= 9:
     print()
 ```
 
+## 3.字符串、列表、元祖、字典
+### 3.1.字符串
+字符串是用双引号（a="hello"）或单引号（b='world'）定义的数据  
+字符串下表索引(index)：0 -> len(str)
+> **切片`[起始位置：结束位置：步长]`**
+
+切片是指对操作的对象截取其中的一部分的操作。字符串、列表、元组都支持切片操作。
+> name="pythoncommand"的下标
+
+|                      | p | y | t | h | o | n | c | o | m | m | a | n | d |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|index(0,...,len(str)-1)| 0 | 1 | 2 | 3 |  4|  5|  6|  7|  8|  9| 10| 11| 12|
+|index(-len(str),...,-1)|-13|-12|-11|-10| -9| -8| -7| -6| -5| -4| -3| -2| -1|
+
+```
+name="pythoncommand"
+print(name[0:3]) # 取下标0-2的字符
+print(name[0:5]) # 取下标0-4的字符
+print(name[3:5]) # 取下标3-4得字符
+print(name[2:])  # 取下标为2开始到最后的字符
+print(name[1:-2]) # 取下标1开始到最后第二个（len(str)-2）之间的字符，等价于print(name[1:len(name)-2])
+print(name[::-1]) # 字符串反转
+```
+
+> 字符串常见操作
+1. find
+查找字符串并返回索引值，没有返回-1
+`strings.find(str, start=0, end=len(strings))`
+2. index
+跟find()方法一样，没有时报异常
+`strings.index(str, start=0, end=len(strings))`
+3. count
+查找字符串出现的次数
+`strings.count(str, start=0, end=len(strings))`
+4. replace
+替换字符串，可指定替换次数
+`strings.replace(str1, str2, strings.count(str1))`
+5. split
+以指定分隔符切片字符串，可指定分割个数
+`strings.split(str=" ", 2)`
+6. capitalize
+将字符串第一个字母大写
+`strings.capitalize`
+7. title
+将字符串每一单词首字母大写
+`strings.title()`
+8. startswith
+检查字符串是否以obj开头，是则返回True，否则返回False
+`strings.startswith(obj)`
+9. endswith
+检查字符串是否以obj结束，是则返回True，否则返回False
+`strings.endswith(obj)`
+10. lower
+将字符串大写字母转换为小写字母
+`strings.lower()`
+11. upper
+将字符串小写字母转换为大写字母
+`strings.upper()`
+12. ljust
+返回一个将原字符串左对齐，并使用空格扩充至长度width的新字符串
+`strings.ljust(width)`
+13. rjust
+返回一个将原字符串右对齐，并使用空格扩充至长度width的新字符串
+`strings.rjust(width)`
+14. center
+返回一个将原字符串居中对齐，并使用空格扩充至长度width的新字符串
+`strings.center(width)`
+15. lstrip
+返回一个将原字符串删除左边（开头）的空白字符的新字符串
+`strings.lstrip()`
+16. rstrip
+返回一个将原字符串删除右边（结尾）的空白字符的新字符串
+`strings.rstrip()`
+17. strip
+返回一个将原字符串删除两边的空白字符的新字符串
+`strings.strip()`
+18. rfind
+类似于find()函数，从右边开始查找字符串
+`strings.rfind(str, start=0, end=len(strings))`
+19. rindex
+类似于index()函数，从右边开始查找字符串
+`strings.rindex(str, start=0, end=len(strings))`
+20. partition
+将字符串以str分割成三部分，str前，str和str后
+`strings.partition(str)`
+21. rpartition
+类似于partition()函数，从右边开始
+`strings.rpartition()`
+22. splitlines
+按照行分割，返回一个列表
+`strings.splitlines()`
+23. isalpha
+如果字符串所有字符都是字母，返回True，否则返回False
+`strings.isalpha()`
+24. isdigit
+如果字符串所有字符都是数字，返回True，否则返回False
+`strings.isdigit()`
+25. isalnum
+如果字符串所有字符都是字母或数字，返回True，否则返回False
+`strings.isalnum()`
+26. isspace
+如果字符串只包含空格，返回True，否则返回False
+`strings.isspace()`
+27. join
+返回字符串拼接构造出的新字符串
+`strings.join(str or set)`
 
 
-
-
-
-
-
-
-
+|序号|名称|语法|描述|
+|:---:|:---:|:---|:---|
+|25|isalnum|如果字符串所有字符都是字母或数字，返回True，否则返回False|`strings.isalnum()`|
+|26|isspace|如果字符串只包含空格，返回True，否则返回False|`strings.isspace()`|
+|27|join|返回字符串拼接构造出的新字符串|`strings.join(str or set)`|
 
 
 
