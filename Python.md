@@ -262,44 +262,73 @@ print(name[::-1]) # 字符串反转
 
 |序号|语法|描述|
 |:---:|:---|:---|
-|1|strings.**find**(str,start=0,end=len(strings))|查找字符串并返回索引值，没有返回-1|
-|2|`strings.index(str,start=0,end=len(strings))`|跟find()方法一样，没有时报异常|
-|3|`strings.count(str,start=0,end=len(strings))`|查找字符串出现的次数|
-|4|`strings.replace(str1,str2,strings.count(str1))`|替换字符串，可指定替换次数|
-|5|`strings.split(str=" ", 2)`|以指定分隔符切片字符串，可指定分割个数|
-|6|`strings.capitalize()`|将字符串第一个字母大写|
-|7|`strings.title()`|将字符串每一单词首字母大写|
-|8|`strings.startswith(obj)`|检查字符串是否以obj开头，是则返回True，否则返回False|
-|9|`strings.endswith(obj)`|检查字符串是否以obj结束，是则返回True，否则返回False|
+|1|strings.**find**(str, start=0, end=len(strings))|查找字符串并返回索引值，没有返回-1|
+|2|strings.**index**(str, start=0, end=len(strings))|跟find()方法一样，没有时报异常|
+|3|strings.**count**(str, start=0, end=len(strings))|查找字符串出现的次数|
+|4|strings.**replace**(str1, str2, strings.count(str1))|替换字符串，可指定替换次数|
+|5|strings.**split**(str=" ", 2)|以指定分隔符切片字符串，可指定分割个数|
+|6|strings.**capitalize**()|将字符串第一个字母大写|
+|7|strings.**title**()|将字符串每一单词首字母大写|
+|8|strings.**startswith**(obj)|检查字符串是否以obj开头，是则返回True，否则返回False|
+|9|strings.**endswith**(obj)|检查字符串是否以obj结束，是则返回True，否则返回False|
 |10|strings.**lower**()|将字符串大写字母转换为小写字母|
-|11|`strings.upper()`|将字符串小写字母转换为大写字母|
-|12|`strings.ljust(width)`|返回一个将原字符串左对齐，并使用空格扩充至长度width的新字符串|
-|13|`strings.rjust(width)`|返回一个将原字符串右对齐，并使用空格扩充至长度width的新字符串|
-|14|`strings.center(width)`|返回一个将原字符串居中对齐，并使用空格扩充至长度width的新字符串|
-|15|`strings.lstrip()`|返回一个将原字符串删除左边（开头）的空白字符的新字符串|
-|16|`strings.rstrip()`|返回一个将原字符串删除右边（结尾）的空白字符的新字符串|
-|17|`strings.strip()`|返回一个将原字符串删除两边的空白字符的新字符串|
-|18|`strings.rfind(str,start=0,end=len(strings))`|类似于find()函数，从右边开始查找字符串|
-|19|`strings.rindex(str,start=0,end=len(strings))`|类似于index()函数，从右边开始查找字符串|
-|20|`strings.partition(str)`|将字符串以str分割成三部分，str前，str和str后|
-|21|`strings.rpartition()`|类似于partition()函数，从右边开始|
-|22|`strings.splitlines()`|按照行分割，返回一个列表|
-|23|`strings.isalpha()`|如果字符串所有字符都是字母，返回True，否则返回False|
-|24|`strings.isdigit()`|如果字符串所有字符都是数字，返回True，否则返回False|
-|25|`strings.isalnum()`|如果字符串所有字符都是字母或数字，返回True，否则返回False|
-|26|`strings.isspace()`|如果字符串只包含空格，返回True，否则返回False|
-|27|`strings.join(str or set)`|返回字符串拼接构造出的新字符串|
+|11|strings.**upper**()|将字符串小写字母转换为大写字母|
+|12|strings.**ljust**(width)|返回将原字符串左对齐，并用空格扩充至长度width的新字符串|
+|13|strings.**rjust**(width)|返回将原字符串右对齐，并用空格扩充至长度width的新字符串|
+|14|strings.**center**(width)|返回将原字符串居中对齐，并用空格扩充至长度width的新字符串|
+|15|strings.**lstrip**()|返回将原字符串删除左边的空白字符的新字符串|
+|16|strings.**rstrip**()|返回将原字符串删除右边的空白字符的新字符串|
+|17|strings.**strip**()|返回将原字符串删除两边的空白字符的新字符串|
+|18|strings.**rfind**(str, start=0, end=len(strings))|类似于find()函数，从右边开始查找字符串|
+|19|strings.**rindex**(str, start=0, end=len(strings))|类似于index()函数，从右边开始查找字符串|
+|20|strings.**partition**(str)|将字符串以str分割成三部分，str前，str和str后|
+|21|strings.**rpartition**()|类似于partition()函数，从右边开始|
+|22|strings.**splitlines**()|按照行分割，返回一个列表|
+|23|strings.**isalpha**()|如果字符串所有字符都是字母，返回True，否则返回False|
+|24|strings.**isdigit**()|如果字符串所有字符都是数字，返回True，否则返回False|
+|25|strings.**isalnum**()|字符串所有字符都是字母或数字为True，否则返回False|
+|26|strings.**isspace**()|如果字符串只包含空格，返回True，否则返回False|
+|27|strings.**join**(str or set)|返回字符串拼接构造出的新字符串|
 
 ```
 testStr = "haha nihao a \t heihei \t woshi nide \t hao \npengyou"
 testStr.split() # \t、/n和空格都会去掉
 ```
 
+### 3.2.列表
+```
+ListA = [1, 2.3, "hello world", 'age10', ("tuple", 29)]
+for item in ListA:
+    print(item)
+i = 0
+while i < len(ListA):
+    print(ListA[i])
+    i += 1
+```
 
+> 列表相关操作
 
-
-
-
+1. 添加元素
+   + append
+        append可以添加任何元素
+   append可以添加任何元素
+   + extend
+   
+   extend添加元素
+2. 修改元素
+ + append
+        append可以添加任何元素
+   append可以添加任何元素
+   + extend
+   
+   extend添加元素
+3. 查找元素
+ + append
+        append可以添加任何元素
+   append可以添加任何元素
+   + extend
+   
+   extend添加元素
 
 
 
