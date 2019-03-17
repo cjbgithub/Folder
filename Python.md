@@ -344,9 +344,9 @@ print(name[::-1]) # 字符串反转
 
 |序号|名称|语法|描述|
 |:---:|:---:|:---|:---|
-|25|isalnum|如果字符串所有字符都是字母或数字，返回True，否则返回False|`strings.isalnum()`|
-|26|isspace|如果字符串只包含空格，返回True，否则返回False|`strings.isspace()`|
-|27|join|返回字符串拼接构造出的新字符串|`strings.join(str or set)`|
+|25|isalnum|`strings.isalnum()`|如果字符串所有字符都是字母或数字，返回True，否则返回False|
+|26|isspace|`strings.isspace()`|如果字符串只包含空格，返回True，否则返回False|
+|27|join|`strings.join(str or set)`|返回字符串拼接构造出的新字符串|
 
 
 
