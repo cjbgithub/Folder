@@ -371,7 +371,9 @@ for key, value in dict.items():
 for index, item in enumerate(dict.items()):
     print(index, item) # 带下标索引输出
 ```
-
+**set 是集合类型，元素不重复**  
+set、list、tuple之间可以相互转换  
+使用set，可以实现对list中的元素去重
 ### 3.4.公共方法
 > 运算符
 
@@ -528,6 +530,15 @@ stus.sort(key = lambda x: x['name'])    # 按name排序
 stus.sort(key = lambda x: x['age'])     # 按age排序
 ```
 
+> 运行程序时传参数并返回list
+```
+# demo.py
+import sys
+print(sys.argv)
+
+# 运行程序
+python demo.py haha 1 2 3 44
+```
 ## 5.文件操作
 ### 5.1.文件打开、关闭及定位
 > 打开文件
@@ -587,7 +598,7 @@ if oldFile:
 > 文件定位
 1. tell() 定位当前位置
 2. seek(offset, from)定位到指定位置
-    + offset 偏移量
+    + offset 偏移量，正数向右偏移，负数向左偏移
     + from 0表示文件开头，1表示当前位置，2表示文件末尾
 
 ### 5.2.文件重命名及删除
@@ -639,12 +650,272 @@ for name in dirList:
 ```
 
 ## 6.面向对象
+面向对象（object-oriented,简称OO）  
+面向对象编程(Object Oriented Programming-OOP) 
+
+### 6.1.类和对象
+
+将具有相同功能的数据和代码进行封装 -> 函数
+将具有相同属性和行为的函数进行封装 -> 类
+
+> 类（class）的构成
+1. 类名
+2. 类属性
+3. 类方法
+
+> 定义类
+```
+class CName(object):
+    """定义一个类"""
+    
+    # __new__至少要有一个参数cls，代表要实例化的类，在实例化时由Python解释器自动提供
+    # __new__必须要有返回值，返回实例化出来的实例
+    def __new__(cls):
+        do ...
+        return object.__new__(cls)
+    
+    # self是实例化出来的实例的引用
+    # 初始化方法，创建对象后程序自动调用
+    def __init__(self, name):
+        # 给对象添加私有属性，更好的保护数据的安全性
+        self.__name = name
+    
+    # 打印对象属性，默认打印对象在内存中的地址
+    def __str__(self):
+        return self.attr...
+    
+    # 变量保存对象引用时此对象记数自增，删除一个变量则记数自减
+    # 当只有一个变量保存对象引用并删除该变量时，对象真正被删除
+    # 析构方法，对象被删除时程序自动调用
+    def __del__(self):
+        do codes...
+    
+    # 对外访问私有属性的接口
+    def getName(self):
+        return self.__name
+    # 对外修改私有属性的接口
+    def setName(self, newName):
+        self.__name = newName
+    
+    def method1():
+        do codes...
+    def method2(a, b, ...):
+        do codes...
+    ...
+```
+
+> 创建对象
+```
+# 创建一个对象
+obj = CName()
+# 给对象添加属性
+obj.attr = "attribute"
+# 修改对象属性
+obj.attr = "newValue"
+# 调用对象方法
+obj.method1()
+```
+
+### 6.2.继承
+```
+class CName(object):
+    "定义一般类"
+    def method:
+        do ...
+
+class CName(AName):
+    "单继承"
+    def method:
+        do ...
+
+class CName(AName, BName):
+    "多继承"
+    def method:
+        do...
+
+# 查看类CName的对象搜索方法时的先后顺序
+print(CName.__mro__)
+
+# 调用父类方法
+super().__init__(args)
+```
+- 不能通过对象直接访问私有属性，可以通过方法访问
+- 不能通过对象直接访问私有方法
+- 私有属性、方法不能被子类继承，也不能被访问
+- 一般情况，私有属性、方法不对外公布，起到安全的作用
+
+### 6.3.多态
+```
+class F1(object):
+    def show(self):
+        print('F1.show')
+
+class S1(F1):
+    def show(self):
+        print('S1.show')
+
+class S2(F1):
+    def show(self):
+        print('S2.show')
+
+def fun(obj)
+    print(obj.show())
+
+s1_obj = S1()
+fun(s1_obj)
+
+s2_obj = S2()
+fun(s2_obj)
+```
+
+### 6.4.类属性、实例属性
+
+类属性是 类对象 拥有的属性，被 类对象 的 实例对象 共有，内存中只存在一份  
+类属性必须通过类对象去引用然后进行修改  
+实例对象引用修改时产生一个同名的实例属性，而不能修改类属性
+
+### 6.5.类方法和静态方法
+
+> 类方法
+
+@classmethod 修饰的方法为类方法，第一个参数必须是类对象cls  
+类方法可以修改类属性
+
+> 静态方法
+
+@staticmethod 修饰的方法为静态方法，不需要多定义参数  
+静态方法必须通过类对象来引用类属性
 
 
+类方法，可修改类属性，可查看类属性
+实例方法，可修改实例属性，可访问类属性、实例属性  
+静态方法，可修改实例属性或类属性，可访问类属性、实例属性
 
+### 6.6.单例模式
+```
+class Singleton(object):
+    __instance = None
+    __firtst_init = False
 
+    def __new__(cls, name, age):
+        if not cls.__instance:
+            cls.__instance = object.__new__(cls)
+        return cls.__instance
 
+    def __init__(self, name, age):
+        if not self.__firtst_init:
+            self.name = name
+            self.age = age
+            Singleton.__firtst_init = True
 
+a = Singleton("zhangsan", 19)
+b = Singleton("lisi", 18)
+
+print(id(a))
+print(id(b))
+
+a.age = 20
+print(b.age)
+```
+
+## 7.异常
+```
+try:
+    do...
+except:
+    # 重新抛出这个异常，触发默认的异常处理
+    raise
+
+try:
+    do...
+except NameError as result:
+    print(result)
+
+try:
+    do...
+except (NameErroe, IOError) as result:
+    print(result)
+
+try:
+    do...
+except Exception as result:
+    print(result)
+else:
+    print("程序正常运行时输出")
+finally:
+    # 无论是否发生异常都必须执行的代码
+    # 比如关闭文件，释放锁，返回数据库连接池
+    do...
+```
+
+> raise引发一个自定义异常
+```
+class ShortInputException(Exception):
+    "自定义异常类"
+    def __init__(self, length, atleast):
+        # super().__init__()
+        self.length = length
+        self.atleast = atleast
+
+def main():
+    try:
+        s = input("请输入 --> ")
+        if len(s) < 3:
+            raise ShortInputException(len(s), 3)
+    except ShortInputException as result:
+        print("ShortInputException: 输入的长度是 %d,长度至少应是 %d"%(result.length, result.atleast))
+    else:
+        print('没有发生异常。')
+
+main()
+```
+
+## 8.模块
+## 8.1.模块介绍
+Python中的模块（module）类似于C中的头文件和Java中的包  
+Python中的module可以理解为一个工具包，加载进来就可以使用其中的工具（函数）
+
+- import
+- from ... import
+- from ... import *
+- import time as tt
+
+> 定位module
+
+1. 当前目录
+2. shell变量PYTHONPATH下的每个目录
+3. 默认目录。UNIX下默认路径：/usr/local/lib/python/
+
+模块搜索路径存储在system模块的sys.path变量中。变量里包含当前目录，PYTHONPATH和由安装过程决定的默认目录。
+
+## 8.2.模块制作
+Python执行一个文件时有个变量__name__  
+变量__name__在文件本身调用时显示__mian__  
+变量__name__在其他文件import时显示调用文件的文件名  
+因此__name__可以在文件中来执行测试代码而不被其他文件import时执行
+> test.py
+```
+#coding=utf-8
+# __all__变量指定from xxx import * 时可以导入的元素
+__all__ = ["test1"]
+
+def add(a, b):
+    return a + b
+def test1():
+    print("-----test1函数-----")
+def test2():
+    print("-----test2函数-----")
+print("__name__ is %s"%__name__)
+if __name__ == "main":
+    print('test coding...')
+```
+> main.py
+``````
+#coding=utf-8
+import test
+result = test.add(11, 22)
+print(result)
+```
 
 
 
