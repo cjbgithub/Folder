@@ -236,7 +236,7 @@ while i <= 9:
 
 ## 3.字符串、列表、元祖、字典
 ### 3.1.字符串
-字符串是用双引号（a="hello"）或单引号（b='world'）定义的数据  
+字符串是用双引号（`a="hello"`）或单引号（`b='world'`）定义的数据  
 字符串下表索引(index)：0 -> len(str)
 > **切片`[起始位置：结束位置：步长]`**
 
@@ -259,91 +259,33 @@ print(name[::-1]) # 字符串反转
 ```
 
 > 字符串常见操作
-1. find
-查找字符串并返回索引值，没有返回-1
-`strings.find(str, start=0, end=len(strings))`
-2. index
-跟find()方法一样，没有时报异常
-`strings.index(str, start=0, end=len(strings))`
-3. count
-查找字符串出现的次数
-`strings.count(str, start=0, end=len(strings))`
-4. replace
-替换字符串，可指定替换次数
-`strings.replace(str1, str2, strings.count(str1))`
-5. split
-以指定分隔符切片字符串，可指定分割个数
-`strings.split(str=" ", 2)`
-6. capitalize
-将字符串第一个字母大写
-`strings.capitalize`
-7. title
-将字符串每一单词首字母大写
-`strings.title()`
-8. startswith
-检查字符串是否以obj开头，是则返回True，否则返回False
-`strings.startswith(obj)`
-9. endswith
-检查字符串是否以obj结束，是则返回True，否则返回False
-`strings.endswith(obj)`
-10. lower
-将字符串大写字母转换为小写字母
-`strings.lower()`
-11. upper
-将字符串小写字母转换为大写字母
-`strings.upper()`
-12. ljust
-返回一个将原字符串左对齐，并使用空格扩充至长度width的新字符串
-`strings.ljust(width)`
-13. rjust
-返回一个将原字符串右对齐，并使用空格扩充至长度width的新字符串
-`strings.rjust(width)`
-14. center
-返回一个将原字符串居中对齐，并使用空格扩充至长度width的新字符串
-`strings.center(width)`
-15. lstrip
-返回一个将原字符串删除左边（开头）的空白字符的新字符串
-`strings.lstrip()`
-16. rstrip
-返回一个将原字符串删除右边（结尾）的空白字符的新字符串
-`strings.rstrip()`
-17. strip
-返回一个将原字符串删除两边的空白字符的新字符串
-`strings.strip()`
-18. rfind
-类似于find()函数，从右边开始查找字符串
-`strings.rfind(str, start=0, end=len(strings))`
-19. rindex
-类似于index()函数，从右边开始查找字符串
-`strings.rindex(str, start=0, end=len(strings))`
-20. partition
-将字符串以str分割成三部分，str前，str和str后
-`strings.partition(str)`
-21. rpartition
-类似于partition()函数，从右边开始
-`strings.rpartition()`
-22. splitlines
-按照行分割，返回一个列表
-`strings.splitlines()`
-23. isalpha
-如果字符串所有字符都是字母，返回True，否则返回False
-`strings.isalpha()`
-24. isdigit
-如果字符串所有字符都是数字，返回True，否则返回False
-`strings.isdigit()`
-25. isalnum
-如果字符串所有字符都是字母或数字，返回True，否则返回False
-`strings.isalnum()`
-26. isspace
-如果字符串只包含空格，返回True，否则返回False
-`strings.isspace()`
-27. join
-返回字符串拼接构造出的新字符串
-`strings.join(str or set)`
-
 
 |序号|名称|语法|描述|
-|:---:|:---:|:---|:---|
+|:---:|:---|:---|:---|
+|1|find|`strings.find(str, start=0, end=len(strings))`|查找字符串并返回索引值，没有返回-1|
+|2|index|`strings.index(str, start=0, end=len(strings))`|跟find()方法一样，没有时报异常|
+|3|count|`strings.count(str, start=0, end=len(strings))`|查找字符串出现的次数|
+|4|replace|`strings.replace(str1, str2, strings.count(str1))`|替换字符串，可指定替换次数|
+|5|split|`strings.split(str=" ", 2)`|以指定分隔符切片字符串，可指定分割个数|
+|6|capitalize|`strings.capitalize`|将字符串第一个字母大写|
+|7|title|`strings.title()`|将字符串每一单词首字母大写|
+|8|startswith|`strings.startswith(obj)`|检查字符串是否以obj开头，是则返回True，否则返回False|
+|9|endswith|`strings.endswith(obj)`|检查字符串是否以obj结束，是则返回True，否则返回False|
+|10|lower|`strings.lower()`|将字符串大写字母转换为小写字母|
+|11|upper|`strings.upper()`|将字符串小写字母转换为大写字母|
+|12|ljust|`strings.ljust(width)`|返回一个将原字符串左对齐，并使用空格扩充至长度width的新字符串|
+|13|rjust|`strings.rjust(width)`|返回一个将原字符串右对齐，并使用空格扩充至长度width的新字符串|
+|14|center|`strings.center(width)`|返回一个将原字符串居中对齐，并使用空格扩充至长度width的新字符串|
+|15|lstrip|`strings.lstrip()`|返回一个将原字符串删除左边（开头）的空白字符的新字符串|
+|16|rstrip|`strings.rstrip()`|返回一个将原字符串删除右边（结尾）的空白字符的新字符串|
+|17|strip|`strings.strip()`|返回一个将原字符串删除两边的空白字符的新字符串|
+|18|rfind|`strings.rfind(str, start=0, end=len(strings))`|类似于find()函数，从右边开始查找字符串|
+|19|rindex|`strings.rindex(str, start=0, end=len(strings))`|类似于index()函数，从右边开始查找字符串|
+|20|partition|`strings.partition(str)`|将字符串以str分割成三部分，str前，str和str后|
+|21|rpartition|`strings.rpartition()`|类似于partition()函数，从右边开始|
+|22|splitlines|`strings.splitlines()`|按照行分割，返回一个列表|
+|23|isalpha|`strings.isalpha()`|如果字符串所有字符都是字母，返回True，否则返回False|
+|24|isdigit|`strings.isdigit()`|如果字符串所有字符都是数字，返回True，否则返回False|
 |25|isalnum|`strings.isalnum()`|如果字符串所有字符都是字母或数字，返回True，否则返回False|
 |26|isspace|`strings.isspace()`|如果字符串只包含空格，返回True，否则返回False|
 |27|join|`strings.join(str or set)`|返回字符串拼接构造出的新字符串|
