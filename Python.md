@@ -245,8 +245,8 @@ while i <= 9:
 
 |                      | p | y | t | h | o | n | c | o | m | m | a | n | d |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|index(0,...,len(str)-1)| 0 | 1 | 2 | 3 |  4|  5|  6|  7|  8|  9| 10| 11| 12|
-|index(-len(str),...,-1)|-13|-12|-11|-10| -9| -8| -7| -6| -5| -4| -3| -2| -1|
+|index(0，...，len(str)-1)| 0 | 1 | 2 | 3 |  4|  5|  6|  7|  8|  9| 10| 11| 12|
+|index(-len(str)，...，-1)|-13|-12|-11|-10| -9| -8| -7| -6| -5| -4| -3| -2| -1|
 
 ```
 name="pythoncommand"
@@ -297,54 +297,79 @@ testStr.split() # \t、/n和空格都会去掉
 
 ### 3.2.列表
 ```
-ListA = [1, 2.3, "hello world", 'age10', ("tuple", 29)]
-for item in ListA:
+listA = [1, 2.3, "hello world", 'age10', ("tuple", 29)]
+for item in listA:
     print(item)
 i = 0
-while i < len(ListA):
-    print(ListA[i])
+while i < len(listA):
+    print(listA[i])
     i += 1
 ```
+列表嵌套：列表可以作为一个元素添加到其他列表中
 
 > 列表相关操作
 
 1. 添加元素
-   + append
-        append可以添加任何元素
-   append可以添加任何元素
-   + extend
-   
-   extend添加元素
+    + append 末尾添加一个元素
+    + extend 两个列表元素合并
+    + insert(index, object) 在指定位置index前插入元素object
 2. 修改元素
- + append
-        append可以添加任何元素
-   append可以添加任何元素
-   + extend
-   
-   extend添加元素
+   + listA[index] = "content"
 3. 查找元素
- + append
-        append可以添加任何元素
-   append可以添加任何元素
-   + extend
-   
-   extend添加元素
+   + in、not in
+   + index 同字符串函数index
+   + count 同字符串函数count
+4. 删除元素
+   + del 根据元素下标删除元素
+   + pop 删除最后一个元素
+   + remove 根据元素的值进行删除
+5. 排序
+   + sort 将list按特定顺序进行排序，默认由小到大参数`reverse=True`可改为倒序，由大到小
 
+### 3.3.元组、字典
+元组语法格式：`(tuple1, tuple2, tuple3, ...)`
+元组**不可修改**，访问用`tuple[index]`，还有count，index函数。一个元素的元组：`a = (10,)`
 
+字典语法格式`{"key1": "value2", "key2": "value2"}`
 
+> 字典常见操作
 
+1. 修改元素
+   + dic["key"] = "new_value"
+2. 添加元素
+   + dic["new_key"] = "new_value"
+3. 删除元素
+   + del dic["key"] 删除字典指定元素
+   + dic.clear() 清空字典，返回空字典
+4. 其他操作
+   + len(dic) 返回字典元素个数
+   + dic.values() 返回字典所有元素values的列表
+   + dic.items() 返回字典所有元素key的列表
+   + dic.has_key("key") 查找key是否存在，存在返回True，否则返回False
 
-
-
-
-
-
-
-
-
-
-
-
+```
+# 字符串遍历
+for char in "hello world!":
+    print(char, end=" ")
+# 列表遍历
+for item in [1, 2.3, "hello", 'char']:
+    print(item, end=" ")
+# 元组遍历
+for num in (1, 2, 5, 10, 6):
+    print(num, end=" ")
+# 字典遍历
+dict = {"name": "zhang", "age": "10", "address": "town"}
+for item in dict.keys():
+    print(item)
+for item in dict.values():
+    print(item)
+for item in dict.items():
+    print(item)
+for key, value in dict.items():
+    print("key=%s, value=%s"%(key, value))
+for index, item in enumerate(dict.items()):
+    print(index, item) # 带下标索引输出
+```
 
 
 
