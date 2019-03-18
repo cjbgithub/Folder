@@ -28,7 +28,7 @@ git config --local --list
 
 
 - git log
-````
+```
 # 按q结束，上下键查看
 git log
 

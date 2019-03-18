@@ -910,7 +910,7 @@ if __name__ == "main":
     print('test coding...')
 ```
 > main.py
-``````
+```
 #coding=utf-8
 import test
 result = test.add(11, 22)
