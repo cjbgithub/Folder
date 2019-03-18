@@ -1,6 +1,15 @@
 # Python
 ## 1.Python基础知识
 ### 1.1.第一个Python程序
+pip是Python的包管理工具
+```
+# 安装ipython
+pip install ipython
+
+# 查看pip包路径
+python -m site
+pip show pip
+```
 文件地址栏输出cmd直接进入命令行
 ```
 python
@@ -910,7 +919,7 @@ if __name__ == "main":
     print('test coding...')
 ```
 > main.py
-``````
+```
 #coding=utf-8
 import test
 result = test.add(11, 22)
