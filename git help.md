@@ -25,6 +25,31 @@ git config --global --list
 # 查看当前仓库配置信息
 git config --local --list
 ```
+- git fetch
+```
+# git fetch 会从远程获取最新到本地，不会自动merge
+
+# 将远程仓库的master分支下载到本地当前branch中
+git fetch origin master
+
+# 比较本地master分支和origin/master分支的差别
+git log -p master ..origin/master
+
+# 进行合并
+git merge origin/master
+
+# 也可以使用如下命令
+git fetch origin master:tmp # 获取最新在本地建立tmp分支
+git diff tmp # 将当前分支与tmp对吧
+git merge tmp # 合并分支到当前分支
+
+```
+
+- git pull
+```
+# 从远程获取最新版本并merge到本地(git fecth更安全)
+git pull origin master
+```
 
 
 - git log
