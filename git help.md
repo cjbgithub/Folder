@@ -1,5 +1,5 @@
 - git配置ssh连接github
-```
+```shell
 # 有效的邮箱地址 生成ssh key
 ssh-keygen -t rsa -C "xxx@yy.com"
 
@@ -26,7 +26,7 @@ git config --global --list
 git config --local --list
 ```
 - git fetch
-```
+```shell
 # git fetch 会从远程获取最新到本地，不会自动merge
 
 # 将远程仓库的master分支下载到本地当前branch中
@@ -46,14 +46,14 @@ git merge tmp # 合并分支到当前分支
 ```
 
 - git pull
-```
+```shell
 # 从远程获取最新版本并merge到本地(git fecth更安全)
 git pull origin master
 ```
 
 
 - git log
-```
+```shell
 # 按q结束，上下键查看
 git log
 
@@ -90,6 +90,23 @@ git log -p fileName.xxx
 # 将日志输出到文件
 git log --name-status --oneline > logfile.txt
 
+# 显示2条被修改文件的修改统计信息，添加或删除了多少行
+git log --stat -2
+
+# 查看提交次数统计
+git shortlog -s -n
 ```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
