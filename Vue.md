@@ -33,7 +33,7 @@ cnpm install -g live-server
 	Run-Edit Configurations...：点击加号，选择npm，Name为Run，package.json选择你工程中的package.json，Command为run，Scripts为dev,然后就可以直接在idea中运行了。
 **npm 是 nodejs 的包管理和分发工具。**
 
-```
+```vue
 <div id="vue_det">
     <h1>site : {{site}}</h1>
     <h1>url : {{url}}</h1>
@@ -45,7 +45,7 @@ cnpm install -g live-server
 > v-model，v-bind，v-pre，v-cloak，v-once
 > v-directive，
 
-```
+```vue
 <div v-if="flag">content</div>
 <div v-show="flag">content</div>
 <li v-for="item in items">{{ item }}</li>
@@ -68,7 +68,7 @@ vue-test
 安装命令：`cnpm install -g live-server`  
 运行命令：`live-server`
 #### 5.helloworld.html
-```
+```vue
 <!doctype html>
 <html lang="en">
 <head>
@@ -93,7 +93,7 @@ vue-test
 </html>
 ```
 ### 1.2.v-if，v-else，v-show
-```
+```vue
 <body>
 <div id="app">
     <div v-if="ok">加载</div>
@@ -112,7 +112,7 @@ vue-test
 ```
 ----------
 
-```
+```vue
 <body>
 <div id="app">
     <div v-show="show">显示</div>
@@ -132,7 +132,7 @@ vue-test
 - v-show：调整css dispaly属性，可以使客户端操作更加流畅。
 ### 1.3.v-for
 #### 1.基本用法
-```
+```vue
 <div id="app">
     <ul>
         <li v-for="array in arrays">{{ array }}</li>
@@ -151,7 +151,7 @@ vue-test
 #### 2.排序
 
 vue不允许修改定义好的数据源，因此要定义一个新的对象接收排完序的数据，并使用此对象进行v-for循环显示
-```
+```vue
 <div id="app">
     <ul>
         <li v-for="array in sortArrays">{{ array }}</li>
@@ -177,7 +177,7 @@ vue不允许修改定义好的数据源，因此要定义一个新的对象接�
 </script>
 ```
 #### 3.对象循环输出
-```
+```vue
 <div id="app">
     <ul>
         <li v-for="(array, index) in sortStudents">{{ index }}:{{ array.name }}-{{ array.age }}</li>
@@ -212,7 +212,7 @@ vue不允许修改定义好的数据源，因此要定义一个新的对象接�
 </script>
 ```
 ### 1.4.v-text，v-html
-```
+```vue
 <span v-text="message"></span>
 <span v-html="message"></span>
 ```
@@ -220,7 +220,7 @@ v-text: 在JavaScript出错或者网络延迟时避免显示{{ message }}
 v-html: 输出HTML文本内容，不建议使用
 ### 1.5.v-on
 v-on就是监听事件
-```
+```vue
 <div id="app">
     {{ score }}<br>
     <button v-on:click="add">加分</button>
@@ -253,7 +253,7 @@ v-on就是监听事件
 ![键值表](https://github.com/cjbgithub/Folder/blob/master/keyboard.png)
 ### 1.6.v-model指令
 v-model实现双向数据绑定
-```
+```vue
 <div id="app">
     <input type="text" v-model="message">
     1.修饰符：lazy(延迟加载，失去焦点时改变值) number trim
@@ -294,7 +294,7 @@ v-model实现双向数据绑定
 ```
 ### 1.7.v-bind指令
 v-bind处理标签属性
-```
+```vue
 <div id="app">
     <img v-bind:src="imgSrc" width="300px"/>
     <p><a :href="webUrl" target="_blank">bing网站</a></p>
@@ -342,7 +342,8 @@ v-bind处理标签属性
 v-pre：跳过Vue编译，直接输出  
 v-cloak：Vue渲染整个DOM完成后才显示，以确保内容完整并样式好看  
 v-once：在第一次DOM加载是进行渲染，渲染完成后视为静态内容，以后不再渲染  
-```
+
+```vue
 <div id="app">
     <div v-pre>{{ message }}</div>
     <div v-cloak>渲染完成后，才显示！</div>
@@ -376,7 +377,7 @@ Vue的全局API函数用来在构造器外部定义新的功能
 - unbind：只绑定一次，指令与元素解绑时调用
 
 自定义指令v-colordirective：
-```
+```vue
 <script type="text/javascript">
     Vue.directive("colordirective", function (el, binding) {
         console.log(el);
@@ -388,7 +389,7 @@ Vue的全局API函数用来在构造器外部定义新的功能
 </script>
 ```
 
-```
+```vue
 <div id="app">
     <div v-colordirective="color">{{ num }}</div>
     <p><button @click="add">ADD</button></p>
@@ -435,7 +436,7 @@ Vue的全局API函数用来在构造器外部定义新的功能
 ```
 ### 2.2.Vue.extend构造器的扩展
 Vue.extend 返回的是一个“扩展实例构造器”,也就是预设了部分选项的Vue实例构造器。
-```
+```vue
 <author></author>
 <div id="author"></div>
 
@@ -461,7 +462,7 @@ Vue.set的作用是在构造器外部操作构造器内部的数据、属性或�
 由于JavaScript的限制，VUE不能自动检测以下变动的数组：  
 1.利用索引直接设置一个项时，Vue不会自动更新；  
 2.修改数组长度时，Vue不会自动更新。
-```
+```vue
 <div id="app">
     {{ count }}
     <ul>
@@ -496,7 +497,7 @@ Vue.set的作用是在构造器外部操作构造器内部的数据、属性或�
 </script>
 ```
 ### 2.4.Vue的生命周期
-```
+```vue
 <div id="app">
     {{ count }}
     <p><button @click="add">add</button></p>
@@ -549,7 +550,7 @@ Vue.set的作用是在构造器外部操作构造器内部的数据、属性或�
 ```
 ### 2.5.Template
 #### 1.直接写在选项里的模版
-```
+```vue
 <div id="app">
     {{ message }}
 </div>
@@ -565,7 +566,7 @@ Vue.set的作用是在构造器外部操作构造器内部的数据、属性或�
 </script>
 ```
 #### 2.写在template标签里面的模版
-```
+```vue
 <div id="app">
     {{ message }}
 </div>
@@ -584,7 +585,7 @@ Vue.set的作用是在构造器外部操作构造器内部的数据、属性或�
 </script>
 ```
 #### 3.写在Script标签里面的模版
-```
+```vue
 <div id="app">
     {{ message }}
 </div>
@@ -606,7 +607,7 @@ Vue.set的作用是在构造器外部操作构造器内部的数据、属性或�
 Component就是制作自定义标签（在HTML中是不存在的）。  
 全局和局部是针对于不同构造器而言。  
 组件注册的是一个标签，指令注册的是已有标签的一个属性。
-```
+```vue
 <div id="app">
     <component1></component1>
     <component2></component2>
@@ -628,7 +629,7 @@ Component就是制作自定义标签（在HTML中是不存在的）。
 </script>
 ```
 ### 2.7.Component组件的props属性设置
-```
+```vue
 <div id="app">
     <panda v-bind:here="message" from-here="China"></panda>
 </div>
@@ -650,7 +651,7 @@ Component就是制作自定义标签（在HTML中是不存在的）。
 </script>
 ```
 ### 2.8.Component父子组件
-```
+```vue
 <div id="app">
     <component1></component1>
 </div>
@@ -676,7 +677,7 @@ Component就是制作自定义标签（在HTML中是不存在的）。
 </script>
 ```
 ### 2.9.Component加载多组件
-```
+```vue
 <div id="app">
     <component v-bind:is="index"></component>
     <button @click="change">changeComponent</button>
@@ -714,7 +715,8 @@ Component就是制作自定义标签（在HTML中是不存在的）。
 1.在全局扩展里加入props进行接受；props: ["count"]  
 2.传递时用propsData进行传递；propsData: {count: 12}  
 3.用插值的形式写入模版。{{ count }}
-```
+
+```vue
 <header></header>
 
 <script type="text/javascript">
@@ -733,7 +735,7 @@ Component就是制作自定义标签（在HTML中是不存在的）。
 ```
 ### 3.2.Computed Option
 Computed的作用主要是对原数据进行改造输出（包括格式的编辑、大小写转换、顺序重排，添加符号...）。
-```
+```vue
 <div id="app">
     <p>{{ newPrice }}</p>
     <ul>
@@ -771,7 +773,7 @@ Computed的作用主要是对原数据进行改造输出（包括格式的编辑
 1.传递参数：  
 - 在methods方法中声明：add: function(num){}  
 - 调用方法时直接传递：<button @click="add(2)"></button>
-```
+```vue
 <div id="app">
     <p>{{ score }}</p>
     <!--1.传递参数；2.$event参数；-->
@@ -808,7 +810,7 @@ Computed的作用主要是对原数据进行改造输出（包括格式的编辑
 </script>
 ```
 ### 3.4.Watch Option
-```
+```vue
 <div id="app">
     <p>温度：{{ temperature }}</p>
     <p>穿衣：{{ cloth }}</p>
@@ -857,7 +859,7 @@ Computed的作用主要是对原数据进行改造输出（包括格式的编辑
 1.写好构造器后，需要增加方法或者临时的活动时使用的方法，使用混入会减少源代码的污染；  
 2.公用方法，用混入的方法可减少代码量，实现代码重用。  
 3.执行顺序：全局混入方法->局部混入方法->原生方法
-```
+```vue
 <div id="app">
     <p>{{ score }}</p>
     <p><button @click="add">Add score</button></p>
@@ -894,7 +896,7 @@ Computed的作用主要是对原数据进行改造输出（包括格式的编辑
 </script>
 ```
 ### 3.6.Extends
-```
+```vue
 <div id="app">
     <p>${ message }</p>
     <p><button @click="add">add</button></p>
@@ -932,7 +934,7 @@ Computed的作用主要是对原数据进行改造输出（包括格式的编辑
 ```
 ## 4.实例和内置组件
 ### 4.1.实例属性
-```
+```vue
 <script type="text/javascript" src="../../assets/js/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
@@ -958,7 +960,7 @@ Computed的作用主要是对原数据进行改造输出（包括格式的编辑
 ```
 ### 4.2.实例方法
 $mount()/$destroy()/$forceUpdated()/$nextTick()
-```
+```vue
 <div id="app"></div>
 <p>
     <button onclick="destroy()">destroy</button>
@@ -1005,7 +1007,7 @@ $mount()/$destroy()/$forceUpdated()/$nextTick()
 ```
 ### 4.3.实例事件
 $on/$once/$emit/$off
-```
+```vue
 <div id="app">
     {{ score }}
 </div>
@@ -1050,7 +1052,7 @@ $on/$once/$emit/$off
 </script>
 ```
 ### 4.4.内置组件-slot
-```
+```vue
 <div id="app">
     <temp>
         <span slot="url">{{ dataObj.url }}</span>
