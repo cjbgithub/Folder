@@ -2,7 +2,7 @@
 ## 1.Python基础知识
 ### 1.1.第一个Python程序
 pip是Python的包管理工具
-```
+```python
 # 安装ipython
 pip install ipython
 
@@ -11,7 +11,7 @@ python -m site
 pip show pip
 ```
 文件地址栏输出cmd直接进入命令行
-```
+```python
 python
 print("hello world!")
 ```
@@ -49,7 +49,7 @@ print("hello world!")
 **Python区分大小写**
 
 > 查看Python关键字(不允许使用关键字定义标识符)
-```
+```python
 import keyword
 keyword.kwlist
 ```
@@ -58,7 +58,7 @@ keyword.kwlist
 `print("hello world!"")`
 
 > 格式化输出
-```
+```python
 age = 18
 name = "chery"
 print("姓名%s,年龄%d"%(name, age))
@@ -98,7 +98,7 @@ python3中的input()和python2中的raw_input()功能一样
 |/|除法|b/a=2|
 |//|取整除|返回商的整数部分|
 |%|取余|返回商的余数部分|
-|\**|幂|2\**2=4, 2\**10=1024|
+|\*\*|幂|2\*\*2=4, 2\*\*10=1024|
 
 + 赋值运算符
 
@@ -112,11 +112,11 @@ python3中的input()和python2中的raw_input()功能一样
 |:---:|:---|:---|
 |+=|加法赋值运算符|c+=a等效于c=c+a|
 |-=|减法赋值运算符|c-=a等效于c=c-a|
-|\*=|乘法赋值运算符|c*=a等效于c=c*a|
+|\*=|乘法赋值运算符|c\*=a等效于c=c\*a|
 |/=|除法赋值运算符|c/=a等效于c=c/a|
 |//=|取整除赋值运算符|c//=a等效于c=c//a|
 |%=|取模赋值运算符|c%=a等效于c=c%a|
-|\**=|幂赋值运算符|c**=a等效于c=c**a|
+|\**=|幂赋值运算符|c\*\*=a等效于c=c\*\*a|
 
 + 比较（关系）运算符
 
@@ -157,7 +157,7 @@ python3中的input()和python2中的raw_input()功能一样
 
 ## 2.判断语句和循环语句
 ### 2.1.if语句
-```
+```python
 if condition 1 is True:
     do codes 1
 # elif condition 2 is True:
@@ -168,7 +168,7 @@ else:
     do other codes
 ```
 if可以嵌套
-```
+```python
 if condition 1 is True:
     if condition 1.1 is True:
         do codes 1
@@ -184,14 +184,14 @@ else:
 ```
 
 ### 2.2.while循环
-```
+```python
 while condition is True:
     codes 1
     codes 2
     ...
 ```
 > 实例99乘法表（i<=9为打印9行，j<=i为每行打印i次，\t为制表符）
-```
+```python
 i = 1
 while i <= 9:
     j = 1
@@ -203,7 +203,7 @@ while i <= 9:
 ```
 
 ### 2.3.for循环
-```
+```python
 for variable_temp in set(listOrStr...):
     do some codes...
 else:
@@ -216,7 +216,7 @@ continue跳过所属层当前循环，继续下一次循环
 break/continue只能在循环中使用，除此以外不能单独使用  
 break/continue在嵌套循环中，只对临近层（所属层）循环起作用，其他层不起作用  
 > for循环
-```
+```python
 name = "dabusidexiaoqiang"
 for x in name:
     print("-----")
@@ -228,7 +228,7 @@ for x in name:
 ```
 
 > while循环
-```
+```python
 i = 0
 while i <= 9:
     i += 1
@@ -257,7 +257,7 @@ while i <= 9:
 |index(0，...，len(str)-1)| 0 | 1 | 2 | 3 |  4|  5|  6|  7|  8|  9| 10| 11| 12|
 |index(-len(str)，...，-1)|-13|-12|-11|-10| -9| -8| -7| -6| -5| -4| -3| -2| -1|
 
-```
+```python
 name="pythoncommand"
 print(name[0:3]) # 取下标0-2的字符
 print(name[0:5]) # 取下标0-4的字符
@@ -299,13 +299,13 @@ print(name[::-1]) # 字符串反转
 |26|strings.**isspace**()|如果字符串只包含空格，返回True，否则返回False|
 |27|strings.**join**(str or set)|返回字符串拼接构造出的新字符串|
 
-```
+```python
 testStr = "haha nihao a \t heihei \t woshi nide \t hao \npengyou"
 testStr.split() # \t、/n和空格都会去掉
 ```
 
 ### 3.2.列表
-```
+```python
 listA = [1, 2.3, "hello world", 'age10', ("tuple", 29)]
 for item in listA:
     print(item)
@@ -357,7 +357,7 @@ while i < len(listA):
    + dic.items() 返回字典所有元素key的列表
    + dic.has_key("key") 查找key是否存在，存在返回True，否则返回False
 
-```
+```python
 # 字符串遍历
 for char in "hello world!":
     print(char, end=" ")
@@ -417,7 +417,7 @@ set、list、tuple之间可以相互转换
     + 字符串 str
     + 元组 tuple
 
-```
+```python
 # 交换两个变量的值
 a = 2
 b = 3
@@ -428,7 +428,7 @@ a = a - b
 ```
 
 ## 4.函数
-```
+```python
 # 定义函数
 def printInfo():
     "函数文档说明" # 还可以用 """函数文档说明""" 这种格式
@@ -453,7 +453,7 @@ help(printInfo)
 > 缺省参数
 
 调用函数，缺省参数没有传入时使用默认值
-```
+```python
 def info(name, age=35):
     return name, age # 等价于(name, age)
 name, age = info("miki")
@@ -467,7 +467,7 @@ print(info(age=12, name="xiaoming"))
 不定长参数接受函数调用时传入的参数比定义的参数多出来的参数  
 *args 存放所有未命名的变量参数，是一个元组  
 **kwargs 存放命名参数，即形如 `key=value`的参数，kwargs为字典
-```
+```python
 def demo(a, b, *args, **kwargs):
     """不定长参数"""
     print("a=", a)
@@ -488,7 +488,7 @@ demo(1, 2, c, d)        # 注意不加星号与上面的区别
 Python中函数参数是引用传递  
 对于不可变类型，因变量不能被修改，不会影响到变量自身  
 对于可变类型，函数体中的运算有可能会更改传入的参数变量
-```
+```python
 def demo(a, b, c, d):
     """自增"""
     a = a + a
@@ -509,7 +509,7 @@ print(d_list)
 > 递归函数
 
 自身循环调用的函数是递归函数
-```
+```python
 def demo(num):
     """num的阶乘：n!"""
     if num > 1:
@@ -524,12 +524,12 @@ print(demo(10))
 ```
 
 > 匿名函数
-```
+```python
 lambda [arg1 [, arg2, ...argn]: expression
 ```
 Lambda函数能接受任何数量的参数但是只能返回一个表达式的值  
 匿名函数不能直接用print，因为lambda需要一个表达式
-```
+```python
 stus = [
     {"name":"zhangsan", "age":18},
     {"name":"lisi", "age":24},
@@ -540,7 +540,7 @@ stus.sort(key = lambda x: x['age'])     # 按age排序
 ```
 
 > 运行程序时传参数并返回list
-```
+```python
 # demo.py
 import sys
 print(sys.argv)
@@ -569,7 +569,7 @@ python demo.py haha 1 2 3 44
 |ab+|读写，二进制格式打开，文件存在时末尾追加，文件不存在时创建文件并写入|
 
 > 读写文件
-```
+```python
 f.write("hwllo world...")
 f.read(5) # 每次读取5个字节
 f.readline() # 每次只读取一行数据
@@ -580,7 +580,7 @@ f.readlines() # 将整个文件一次读取，返回以一行的数据为元素�
 `f.close()`
 
 > 文件备份
-```
+```python
 #coding=utf-8
 oldFileName = input("请输入需要拷贝的文件名字：")
 oldFile = open(oldFileName, 'r')
@@ -612,19 +612,19 @@ if oldFile:
 
 ### 5.2.文件重命名及删除
 > 文件重命名
-```
+```python
 import os
 os.rename("file1.txt", "newFile.txt")
 ```
 
 > 删除文件
-```
+```python
 import os
 os.remove("file.txt")
 ```
 
 ### 5.3.文件夹操作
-```
+```python
 import os
 os.mkdir("dirName") # 创建文件夹
 os.getcwd()         # 获取当前目录
@@ -634,7 +634,7 @@ os.rmdir("dirName") # 删除文件夹
 ```
 
 ### 5.4.批量修改文件名
-```
+```python
 #coding=utf-8
 import os
 funFlag = 1 # 1表示添加标志，2表示删除标志
@@ -673,7 +673,7 @@ for name in dirList:
 3. 类方法
 
 > 定义类
-```
+```python
 class CName(object):
     """定义一个类"""
     
@@ -714,7 +714,7 @@ class CName(object):
 ```
 
 > 创建对象
-```
+```python
 # 创建一个对象
 obj = CName()
 # 给对象添加属性
@@ -726,7 +726,7 @@ obj.method1()
 ```
 
 ### 6.2.继承
-```
+```python
 class CName(object):
     "定义一般类"
     def method:
@@ -754,7 +754,7 @@ super().__init__(args)
 - 一般情况，私有属性、方法不对外公布，起到安全的作用
 
 ### 6.3.多态
-```
+```python
 class F1(object):
     def show(self):
         print('F1.show')
@@ -801,7 +801,7 @@ fun(s2_obj)
 静态方法，可修改实例属性或类属性，可访问类属性、实例属性
 
 ### 6.6.单例模式
-```
+```python
 class Singleton(object):
     __instance = None
     __firtst_init = False
@@ -828,7 +828,7 @@ print(b.age)
 ```
 
 ## 7.异常
-```
+```python
 try:
     do...
 except:
@@ -858,7 +858,7 @@ finally:
 ```
 
 > raise引发一个自定义异常
-```
+```python
 class ShortInputException(Exception):
     "自定义异常类"
     def __init__(self, length, atleast):
@@ -903,7 +903,7 @@ Python执行一个文件时有个变量__name__
 变量__name__在其他文件import时显示调用文件的文件名  
 因此__name__可以在文件中来执行测试代码而不被其他文件import时执行
 > test.py
-```
+```python
 #coding=utf-8
 # __all__变量指定from xxx import * 时可以导入的元素
 __all__ = ["test1"]
@@ -919,7 +919,7 @@ if __name__ == "main":
     print('test coding...')
 ```
 > main.py
-```
+```python
 #coding=utf-8
 import test
 result = test.add(11, 22)
