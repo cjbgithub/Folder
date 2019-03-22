@@ -291,6 +291,15 @@ public static void main(String[] args) throws Exception {
 }
 ```
 
+## 6. Buffered流
+
+带有缓冲区的流读写时间加快，读写文件速度比字节流快，并且可以对源数据的某一部分反复读写
+
+使用了包装者模式，构造此类对象时需要一个基本流对象：
+
+```java
+BufferedInputStream bin = new BufferedInputStream( new FileInputStream("XX"))
+```
 
 
 
@@ -301,4 +310,22 @@ public static void main(String[] args) throws Exception {
 
 
 
-[IO读写](https://blog.csdn.net/yhl_jxy/article/details/79272792)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
