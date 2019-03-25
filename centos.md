@@ -29,7 +29,7 @@ Bash（Bourne-Again SHell）解释器
   - HISTORY         维护历史与联系方式
 ```
 
-## 2.3 常用系统工作命令
+## 1.3 常用系统工作命令
 
 **1．echo命令**
 
@@ -146,7 +146,7 @@ KiB Swap:   839676 total,   839676 free,        0 used.   753088 avail Mem
 # 终止某个指定名称的服务所对应的全部进程
 ```
 
-## 2.4 系统状态检测命令
+## 1.4 系统状态检测命令
 
 **1．ip命令**
 
@@ -219,7 +219,7 @@ root     pts/1        2019-03-25 20:03 (192.168.0.110)
 # 用于收集系统配置及架构信息并输出诊断文档以及校验码
 ```
 
-## 2.5 工作目录切换命名
+## 1.5 工作目录切换命名
 
 **1．pwd命令**
 
@@ -251,7 +251,7 @@ root     pts/1        2019-03-25 20:03 (192.168.0.110)
   -d	查看目录属性信息
 ```
 
-## 2.6 文件文本编辑命令
+## 1.6 文件文本编辑命令
 
 **1．cat命令**
 
@@ -335,7 +335,7 @@ adm...
   -c		详细比较多个文件的差异之处
 ```
 
-## 2.7 文件目录管理命令
+## 1.7 文件目录管理命令
 
 **1．touch命令**
 
@@ -407,7 +407,7 @@ adm...
 # 查看文件的类型
 ```
 
-## 2.8 打包压缩与搜索命令
+## 1.8 打包压缩与搜索命令
 
 **1．tar命令**
 
@@ -470,101 +470,154 @@ bin:x:1:1:bin:/bin:/sbin/nologin...
 ```
 
 
-
-
-```shell
-[root@localhost ~]#  [选项] []
-```
-
-
-
-```shell
-[root@localhost ~]#  [选项] []
-```
-
-
-
-```shell
-[root@localhost ~]#  [选项] []
-```
-
-
-
-```shell
-[root@localhost ~]#  [选项] []
-```
-
-
-
-```shell
-[root@localhost ~]#  [选项] []
-```
-
-
-
-```shell
-[root@localhost ~]#  [选项] []
-```
-
-
-
-```shell
-[root@localhost ~]#  [选项] []
-```
-
-
-
-```shell
-[root@localhost ~]#  [选项] []
-```
-
-
-
-```shell
-[root@localhost ~]#  [选项] []
-```
-
-
-
-```shell
-[root@localhost ~]#  [选项] []
-```
-
-
-
-```shell
-[root@localhost ~]#  [选项] []
-```
-
-
-
-```shell
-[root@localhost ~]#  [选项] []
-```
-
-
-
-```shell
-[root@localhost ~]#  [选项] []
-```
-
-
-
-```shell
-[root@localhost ~]#  [选项] []
-```
-
-
-
-```shell
-[root@localhost ~]#  [选项] []
-```
-
-
-
-
-
 # 2. 管道符、重定向、环境变量
+
+## 2.1 输入输出重定向
+
++ 标准输入重定向（STDIN，文件描述符为0）：默认从键盘输入，也可从其他文件或命令中输入。
++ 标准输出重定向（STDOUT，文件描述符为1）：默认输出到屏幕。
++ 错误输出重定向（STDERR，文件描述符为2）：默认输出到屏幕。
+
+> 输入重定向符号及其作用
+
+| 符号                 | 作用                                         |
+| -------------------- | -------------------------------------------- |
+| 命令 < 文件          | 将文件作为命令的标准输入                     |
+| 命令 << 分界符       | 从标准输入中读入，直到遇见分界符才停止       |
+| 命令 < 文件1 > 文件2 | 将文件1作为命令的标准输入并将标准输出到文件2 |
+
+> 输出重定向符号及其作用
+
+| 符号                             | 作用                                                         |
+| -------------------------------- | ------------------------------------------------------------ |
+| 命令 > 文件                      | 将标准输出重定向到一个文件中（清空原有文件的数据）           |
+| 命令 2> 文件                     | 将错误输出重定向到一个文件中（清空原有文件的数据）           |
+| 命令 >> 文件                     | 将标准输出重定向到一个文件中（追加到原有内容的后面）         |
+| 命令 2>> 文件                    | 将错误输出重定向到一个文件中（追加到原有内容的后面）         |
+| 命令 >> 文件 2>&1、命令 &>> 文件 | 将标准输出与错误输出共同写入到文件中（追加到原有内容的后面） |
+
+## 2.2 管道命令符
+
+“命令A | 命令B”：把前一个命令原本要输出到屏幕的标准正常数据当作是后一个命令的标准输入
+
+
+```shell
+# 找出被限制登陆用户
+[root@localhost ~]# grep /sbin/nologin /etc/passwd
+# 统计文本行数
+[root@localhost ~]# wc -l
+# 统计被限制登陆用户的个数
+[root@localhost ~]# grep /sbin/nologin /etc/passwd | wc -l
+15
+[root@localhost ~]# echo "Content" | mail -s "Subject" otheruser
+[root@localhost ~]# mail -s "Readme" root@otheruser.com << over
+```
+
+## 2.3 命令行的通配符
+
++ (*)         匹配零个或多个字符
++ (?)          匹配单个字符
++ [0-9]]     匹配0~9之间的单个数字的字符
++ [abc]]    匹配a、b、c三个字符中的任意一个字符
+
+```shell
+[root@localhost ~]# ls -l /dev/sda*
+brw-rw----. 1 root disk 8, 0 3月  26 07:14 /dev/sda
+brw-rw----. 1 root disk 8, 1 3月  26 07:14 /dev/sda1
+brw-rw----. 1 root disk 8, 2 3月  26 07:14 /dev/sda2
+[root@localhost ~]# ls -l /dev/sda?
+brw-rw----. 1 root disk 8, 1 3月  26 07:14 /dev/sda1
+brw-rw----. 1 root disk 8, 2 3月  26 07:14 /dev/sda2
+[root@localhost ~]# ls -l /dev/sda[0-9]
+brw-rw----. 1 root disk 8, 1 3月  26 07:14 /dev/sda1
+brw-rw----. 1 root disk 8, 2 3月  26 07:14 /dev/sda2
+```
+
+## 2.4 常用转义字符
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+## 2.1 输入输出重定向
+
+
+
+## 2.3 22
+
+
 
 
 
