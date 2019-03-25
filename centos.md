@@ -15,11 +15,11 @@ Bash（Bourne-Again SHell）解释器
 
 ```shell
 [root@localhost ~]# man man
-  - 查询：/linux ?linux；向后向前定位：n N；空格 up down home end q
-  - NAME			命令名称
-  - SYNOPSIS		参数的大致使用方法
-  - DESCRIPTION		介绍说明
-  - EXAMPLES		演示
+	- 查询：/linux ?linux；向后向前定位：n N；空格 up down home end q
+	- NAME			命令名称
+	- SYNOPSIS		参数的大致使用方法
+	- DESCRIPTION		介绍说明
+	- EXAMPLES		演示
   - OVERVIEW		概述
   - DEFAULTS		默认功能
   - OPTIONS			具体可用选项
@@ -98,7 +98,7 @@ root@localhost ~]# date -s "20001201 08:01:01"
 # 常见进程状态
   R（运行）		进程正在运行或在运行队列中等待
   S（中断）		进程处于休眠中，当某个条件形成后或者接收到信号时，则脱离该状态
-  D（不可中断）  进程不响应系统异步信号，即便用kill命令也不能将其中断
+  D（不可中断） 	进程不响应系统异步信号，即便用kill命令也不能将其中断
   Z（僵死）		进程已经终止，但进程描述符依然存在, 直到父进程调用wait4()系统函数后将进程释放
   T（停止）		进程收到停止信号后停止运行
 ```
@@ -237,7 +237,7 @@ root     pts/1        2019-03-25 20:03 (192.168.0.110)
 # cd -			返回上一次所处的目录
 # cd ..			进入上一级目录
 # cd ~			切换当前用户的根目录
-# cd ~username	切换其他用户的根目录
+# cd ~username		切换其他用户的根目录
 ```
 
 **3．ls命令**
@@ -453,16 +453,16 @@ bin:x:1:1:bin:/bin:/sbin/nologin...
   -perm				匹配权限（mode为完全匹配，-mode为包含即可）
   -user				匹配所有者
   -group			匹配所有组
-  -mtime -n +n		匹配修改内容的时间（-n指n天以内，+n指n天以前）
-  -atime -n +n		匹配访问文件的时间（-n指n天以内，+n指n天以前）
-  -ctime -n +n		匹配修改文件权限的时间（-n指n天以内，+n指n天以前）
+  -mtime -n +n			匹配修改内容的时间（-n指n天以内，+n指n天以前）
+  -atime -n +n			匹配访问文件的时间（-n指n天以内，+n指n天以前）
+  -ctime -n +n			匹配修改文件权限的时间（-n指n天以内，+n指n天以前）
   -nouser			匹配无所有者的文件
   -nogroup			匹配无所有组的文件
-  -newer f1 !f2		匹配比文件f1新但比f2旧的文件
-  -type b/d/c/p/l/f	匹配文件类型（块设备、目录、字符设备、管道、链接文件、文本文件）
+  -newer f1 !f2			匹配比文件f1新但比f2旧的文件
+  -type b/d/c/p/l/f		匹配文件类型（块设备、目录、字符设备、管道、链接文件、文本文件）
   -size				匹配文件的大小（+50KB为查找超过50KB的文件，而-50KB为查找小于50KB的文件）
   -prune			忽略某个目录
-  -exec …… {}\;		后面可跟用于进一步处理搜索结果的命令
+  -exec …… {}\;			后面可跟用于进一步处理搜索结果的命令
 [root@localhost home]# find /etc -name "host*" -print
 /etc/host.conf...
 [root@localhost home]# fine / -perm -4000 -print
