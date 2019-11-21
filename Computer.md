@@ -62,24 +62,24 @@ Nginx是一款轻量级的Web服务器/反向代理服务器及电子邮件代�
 [root@localhost ~]# svnadmin create /application/svndata/sadoc
 # 修改svn配置文件
 [root@localhost ~]# vim /application/svndata/sadoc/conf/svnserver.conf
- [genneral]
- anon-access = none
- auth-access = write
- passwd-db = /application/svnpasswd/passwd
- authz-bd = /application/svnpasswd/authz
+[genneral]
+anon-access = none
+auth-access = write
+passwd-db = /application/svnpasswd/passwd
+authz-bd = /application/svnpasswd/authz
 # 拷贝svn配置文件
 [root@localhost ~]# cp authz passwd /application/svnpasswd
 [root@localhost ~]# vim /application/svnpasswd/authz
- [users]
- cjb = cjb
- test = test
+[users]
+cjb = cjb
+test = test
 [root@localhost ~]# vim /application/svnpasswd/authz
- [groups]
- wanda = test, test1
- [sadoc:/]
- cjb = rw
- test = r
- @wanda = r
+[groups]
+wanda = test, test1
+[sadoc:/]
+cjb = rw
+test = r
+@wanda = r
 # svn 防火墙iptables开启端口3690
 [root@localhost ~]# systemctl stop firewalld
 [root@localhost ~]# systemctl disable firewalld
@@ -282,6 +282,29 @@ offset 最大 2^32-1，即最大字符串为 512M
 127.0.0.1:6379> setbit char 2 1
 127.0.0.1:6379> get char
 ```
+bitop操作返回的是字符串长度，一个字符串两个字节，8bit
+```python
+# 记录一亿人一周内登陆的数据，记录数据的位数对应登陆用户的编号
+# 1.初始化数据
+127.0.0.1:6379> setbit mon 100000000 1
+# 2.登陆时设置值
+127.0.0.1:6379> setbit mon 3 1				-- 3号用户周一登陆
+127.0.0.1:6379> setbit mon 5 1				-- 5号用户周一登陆
+127.0.0.1:6379> setbit mon 7 1				-- 7号用户周一登陆
+127.0.0.1:6379> setbit thu 100000000 1
+127.0.0.1:6379> setbit thu 3 1				-- 3号用户周二登陆
+127.0.0.1:6379> setbit thu 5 1
+127.0.0.1:6379> setbit thu 8 1
+127.0.0.1:6379> setbit wen 100000000 1
+127.0.0.1:6379> setbit wen 3 1				-- 3号用户周三登陆
+127.0.0.1:6379> setbit wen 4 1
+127.0.0.1:6379> setbit wen 6 1
+# 3.运算并记录结果
+127.0.0.1:6379> bitop and result mon thu wen
+# 4.获取指定登陆人是否三天内连续登陆的次数
+127.0.0.1:6379> getbit result 3				-- 3号用户是否连续三天登陆的结果
+127.0.0.1:6379> getbit result 4				-- 4号用户是否连续三天登陆的结果
+```
 
 ## redis链表(link)结构
 
@@ -304,6 +327,54 @@ offset 最大 2^32-1，即最大字符串为 512M
 127.0.0.1:6379> linsert key after|before search value
 # 从source链尾获取元素并放在dest链头
 127.0.0.1:6379> rpoplpush source dest
+```
+
+## redis集合(set)命令
+
+集合性质：确定性，唯一性，无序性
+
+```python
+# 添加元素
+127.0.0.1:6379> sadd key value1 value2 ...
+# 删除元素,返回真正删除元素的个数
+127.0.0.1:6379> srem key value1 value2 ...
+# 返回并删除一个随机元素
+127.0.0.1:6379> spop key
+# 返回一个随机元素
+127.0.0.1:6379> srandmember key
+# 判断元素在集合中是否存在
+127.0.0.1:6379> sismember key value
+# 返回所有元素
+127.0.0.1:6379> smembers key
+# 计算集合中元素个数
+127.0.0.1:6379> scard key
+# 删除source中元素value并将其添加到dest中
+127.0.0.1:6379> smove source dest value
+# 计算并返回交集
+127.0.0.1:6379> sinter key1 key2 ...
+# 计算交集并添加到dest中
+127.0.0.1:6379> sinterstore dest key1 key2 ...
+# 计算并返回交集
+127.0.0.1:6379> suion key1 key2 ...
+# 计算并返回差集(key1-key2-...)
+127.0.0.1:6379> sdiff key1 key2 ...
+```
+
+## redis有序集合(order set)命令
+
+```python
+# 添加元素
+127.0.0.1:6379> zadd key score1 value1 score2 value2 ...
+# 删除元素
+127.0.0.1:6379> zrem value1 value2 ...
+# 返回并删除一个随机元素
+127.0.0.1:6379> spop key
+# 返回一个随机元素
+127.0.0.1:6379> srandmember key
+# 判断元素在集合中是否存在
+127.0.0.1:6379> sismember key value
+# 返回所有元素
+127.0.0.1:6379> smembers key
 # 
 127.0.0.1:6379> 
 # 
