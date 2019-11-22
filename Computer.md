@@ -366,21 +366,119 @@ bitop操作返回的是字符串长度，一个字符串两个字节，8bit
 # 添加元素
 127.0.0.1:6379> zadd key score1 value1 score2 value2 ...
 # 删除元素
-127.0.0.1:6379> zrem value1 value2 ...
-# 返回并删除一个随机元素
-127.0.0.1:6379> spop key
-# 返回一个随机元素
-127.0.0.1:6379> srandmember key
-# 判断元素在集合中是否存在
-127.0.0.1:6379> sismember key value
-# 返回所有元素
-127.0.0.1:6379> smembers key
+127.0.0.1:6379> zrem key value1 value2 ...
+# 按照score删除元素
+127.0.0.1:6379> zremrangebyscore key min max
+# 按照order删除元素
+127.0.0.1:6379> zremrangebyrank key start stop
+# 查看排名
+127.0.0.1:6379> zrank key member
+# 按照排名范围返回元素[并返回分数]
+127.0.0.1:6379> zrange key start stop [withscores]
+# 按照降序排名返回元素
+127.0.0.1:6379> zrevrange key start stop
+# 排序后按照score获取元素
+127.0.0.1:6379> zrangebyscore key min max [withscores] limit offset N
+# 统计元素个数
+127.0.0.1:6379> zcard key
+# 统计指定范围元素个数
+127.0.0.1:6379> zcount key min max
+# 按照元素权重及指定聚合方法计算多个集合的交集
+127.0.0.1:6379> zinterstore destination numkeys key1 [key2 ...] [weights weight [weight ...]] [aggregate sum|min|max]
+# 示例
+127.0.0.1:6379> zadd bag 2 a 3 b 4 c
+127.0.0.1:6379> zadd pag 1 a 2.5 b 8 d
+127.0.0.1:6379> zinterstore tmp 2 bag pag
+127.0.0.1:6379> zinterstore tmp 2 bag pag aggregate sum
+127.0.0.1:6379> zinterstore tmp 2 bag pag aggregate min
+127.0.0.1:6379> zinterstore tmp 2 bag pag weights 1 2
+127.0.0.1:6379> zrange tmp 0 -1 withscores
+```
+
+## redis哈希(Hash)命令
+
+```python
+# 设置field域的值value
+127.0.0.1:6379> hset key field value
+# 批量设置值
+127.0.0.1:6379> hmset key field1 value1 [field2 value2 ...]
+# 获取值
+127.0.0.1:6379> hget key field
+# 批量获取值
+127.0.0.1:6379> hmget key field1 field2 ...
+# 获取所有值
+127.0.0.1:6379> hgetall key
+# 删除值
+127.0.0.1:6379> hdel key field
+# 返回元素个数
+127.0.0.1:6379> hlen key
+# 判断元素是否存在
+127.0.0.1:6379> hexists key field
+# 自增
+127.0.0.1:6379> hinrby key field value
+127.0.0.1:6379> hinrbyfloat key field value
+# 获取所有field
+127.0.0.1:6379> hkeys key
+# 获取所有value
+127.0.0.1:6379> hvals key
+```
+
+## redis事务
+
+|      | MySQL             | Redis       |
+| ---- | ----------------- | ----------- |
+| 开启 | start transaction | multi       |
+| 语句 | 普通SQL           | 普通命令    |
+| 失败 | rollback回滚      | discard取消 |
+| 成功 | commit            | exec        |
+
+执行中间出错时，rollback全部回滚，discard不能撤回已正确执行的命令
+
+悲观锁：只能由一个人操作；乐观锁（redis）：其他人也可以操作，数据变更时撤销操作
+
+```python
+127.0.0.1:6379> mset ticket 1 money 500
+127.0.0.1:6379> watch
+127.0.0.1:6379> multi
+127.0.0.1:6379> decr ticket
+127.0.0.1:6379> decrby money 100
+127.0.0.1:6379> exec
+127.0.0.1:6379> mget ticket money
+127.0.0.1:6379> unwatch
+```
+
+## redis消息订阅
+
+```python
+127.0.0.1:6379> publish key 'message'
+127.0.0.1:6379> subscribe key
+127.0.0.1:6379> psubscribe key*
+127.0.0.1:6379> pubsub channels
+```
+
+
+
+```python
 # 
 127.0.0.1:6379> 
 # 
 127.0.0.1:6379> 
 # 
 127.0.0.1:6379> 
+# 
+127.0.0.1:6379> 
+# 
+127.0.0.1:6379>  
+# 
+127.0.0.1:6379> 
+# 
+127.0.0.1:6379> 
+# 
+127.0.0.1:6379> 
+# 
+127.0.0.1:6379> 
+# 
+127.0.0.1:6379>  
 # 
 127.0.0.1:6379> 
 # 
@@ -392,8 +490,4 @@ bitop操作返回的是字符串长度，一个字符串两个字节，8bit
 # 
 127.0.0.1:6379> 
 ```
-
-
-
-
 

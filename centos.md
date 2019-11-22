@@ -517,8 +517,8 @@ bin:x:1:1:bin:/bin:/sbin/nologin...
 
 + (*)         匹配零个或多个字符
 + (?)          匹配单个字符
-+ [0-9]]     匹配0~9之间的单个数字的字符
-+ [abc]]    匹配a、b、c三个字符中的任意一个字符
++ [0-9]     匹配0~9之间的单个数字的字符
++ [abc]    匹配a、b、c三个字符中的任意一个字符
 
 ```shell
 [root@localhost ~]# ls -l /dev/sda*
@@ -631,6 +631,74 @@ brw-rw----. 1 root disk 8, 2 3月  26 07:14 /dev/sda2
 
 # 4. 用户身份与文件权限
 
+UID：user identification，0（管理员）、1-999（系统用户）、1000+（正常用户）
+
+GID：group identification
+
+创建用户会生成基本用户组，添加其他用户组称为扩展用户组。用户拥有一个基本用户组，多个扩展用户组
+
+
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+```shell
+[root@localhost ~]#  [选项] []
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -654,6 +722,34 @@ brw-rw----. 1 root disk 8, 2 3月  26 07:14 /dev/sda2
 
 
 # 8. ssh服务远程管理主机
+
+```python
+[root@localhost ~]# vim /etc/sysconfig/network-scripts/ifcfg-enp0s3
+TYPE="Ethernet"
+PROXY_METHOD="none"
+BROWSER_ONLY="no"
+BOOTPROTO="static"
+IPADDR=192.168.17.91
+MM_CONTROLLED=no
+NETMASK=225.225.225.0
+DEFROUTE="yes"
+IPV4_FAILURE_FATAL="no"
+IPV6INIT="yes"
+IPV6_AUTOCONF="yes"
+IPV6_DEFROUTE="yes"
+IPV6_FAILURE_FATAL="no"
+IPV6_ADDR_GEN_MODE="stable-privacy"
+NAME="enp0s3"
+UUID="0e9db9de-5a27-41d0-98a3-b75be2262145"
+DEVICE="enp0s3"
+ONBOOT="yes"
+
+DNS1=192.168.17.1
+DNS2=8.8.8.8
+DNS3=4.4.4.4
+```
+
+
 
 
 
