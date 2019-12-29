@@ -7,17 +7,17 @@ regedit -> HKEY_LOCAL_MACHINE->SOFTWARE->Microsoft->Windows->CurrentVersion -> �
 计算机保存信息的戒指：
 
 + 内部存储器
-    - 寄存器
-    - 高速缓冲存储器（Cache）
-    - 主存储器
+  - 寄存器
+  - 高速缓冲存储器（Cache）
+  - 主存储器
 + 外部存储器
-    + 磁盘
-        - 软盘（A、B）
-        - 硬盘（C...）
-            + 固态硬盘SSD
-            + 机械硬盘HDD
-    + 光盘
-    + U盘
+  + 磁盘
+    - 软盘（A、B）
+    - 硬盘（C...）
+      + 固态硬盘SSD
+      + 机械硬盘HDD
+  + 光盘
+  + U盘
 
 硬盘分区是对硬盘的一种格式化，然后才能用硬盘保存信息
 + 主分区（活动分区）C
@@ -491,3 +491,263 @@ bitop操作返回的是字符串长度，一个字符串两个字节，8bit
 127.0.0.1:6379> 
 ```
 
+
+
+
+
+# JVM
+
+​    HotSpot(Java HotSpot Virtual Machine)从JDK1.3开始成为Sun JDK的默认虚拟机
+
+​	HotSpot的垃圾收集机制Garbage Collection对应的产品Garbage Collector
+
+## JVM术语
+
+1. Millisecond ms
+
+   millisecond(ms)  microsecond(µs)  nanosecond(ns)  picosecond(ps)，依次从大到小千分之一
+
+2. Megabyte
+
+3. 配置JVM Option
+
+   ```java
+   public class JvmDemoTest {
+       public static void main(String[] args) {
+           Runtime runtime = Runtime.getRuntime();
+           int freeMemory = (int) (runtime.freeMemory() / 1024 / 1024);
+           int totalMemory = (int) (runtime.totalMemory() / 1024 / 1024);
+           System.out.println("Memory info :" + freeMemory + "M/"
+                   + totalMemory + "M(free/total)");
+       }
+   }
+   ```
+
+4. 并行和并发计算
+   并行是多个任务同时执行
+
+   并发是多个任务交替执行，以达到宏观上同时执行的效果，而多个任务之间有可能还是串行的
+   
+5. 进程和线程
+
+   进程是程序执行的一个实例，是资源非分配的最小单位。
+
+   线程是进程内独立执行的一个单元执行流，是程序执行的最小单位。
+
+6. 多线程 multithreading
+
+   多线程是一种从软件或硬件上实现多个线程并发执行的技术
+
+7. 内存泄漏 Memory Leak
+
+   内存泄漏是指用动态存储分配函数动态开辟的空间在使用完毕后未被释放，直到程序结束
+
+   ```Java
+   // -Xms10m -Xmx20m
+   public class MemoryLeakTest {
+       static class Key {
+           Integer id;
+           public Key(Integer id) {this.id = id;}
+           @Override
+           public int hashCode() {return id.hashCode();}
+       }
+       public static void main(String[] args) {
+           Map map = new HashMap();
+           while (true)
+               for (int i = 0; i < 10000; i++)
+                   if (!map.containsKey(new Key(i)))
+                       map.put(new Key(i), "Number:" + i);
+       }
+   }
+   ```
+
+8. Soft、Weak、Phantom、Final、JNI References
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## JVM Option
+
+1. -XX:+PrintGCDetails
+
+``` 
+Heap 堆
+ PSYoungGen 年轻代
+  eden space 33280K, 92% used ...
+  from space 5120K, 99% used ...
+  to   space 5120K, 0% used ...
+ ParOldGen total 87552K, used 1441K ...
+  object space 87552K, 1% used ...
+ Metaspace used 5806K ...
+  class space used 595K, capacity 667K, committed 768K, reserved 1048576K
+```
+2. -Xloggc
+``` 
+Ordinary Object Pointer 普通指针对象，64位消耗的内存是32位的1.5倍。
+	-XX:+UseCompressedOops 在64 bit JVM中压缩指针，可以节约内存
+	-XX:+UseCompressedClassPointers 压缩类的元数据
+	-XX:-UseLargePagesIndividualAllocation 大页内存使用时自动启用
+-XX:+PrintGCDetails -verbose:gc -Xloggc:gc.log -XX:+useSerialGC 
+```
+3. -XX+useSerialGC
+4. -XX:+useParNewGC
+5. -XX:+useParallelGC
+6. -XX:+useParallelOldGC
+7. -XX:+useConcMarkSweepGC
+8. -XX:+useG1GC
+| GC输出年轻代名称   | GC收集器                                |
+| ------------------ | --------------------------------------- |
+| def new generation | -XX:UseSerialGC                         |
+| par new generation | -XX:UseParNewGC或-XX:UseConcMarkSweepGC |
+| PSYoungGen         | -XX:UseParallelOldGC或-XX:UseParallelGC |
+| garbage-first heap | -XX:UseG1GC                             |
+
+9. -XX:+PrintGCApplicationStoppedTime
+
+     -XX:+PrintGCApplicationConcurrentTime
+
+10. ConcGCThreads=8
+      region大小默认为堆大小的1/2000
+
+11. -XX:G1HeapRegionSize=32M
+
+12. -XX:G1HeapWastePercent=5
+
+    G1 GC不会回收的空闲内存比例是堆内存的5%
+
+13. -XX:G1MixedGCCountTarget
+
+14. -XX:+G1PrintRegionLivenessInfo
+
+    诊断选项，打印Region存活对象信息，使用前必须开启-XX:+UnlockDiagnosticVMOptions
+
+15. -XX:+G1ReservePercent
+
+16. -XX:+G1SummarizeRSetStats
+
+    诊断选项，打印RSet信息，使用前必须开启-XX:+UnlockDiagnosticVMOptions
+
+    可同时使用-XX:+G1SummarizeRSetStatsPeriod
+
+17. -XX:+G1TraceConcRefinement
+
+    诊断选项，打印并行Refinement线程相关信息
+
+    | Garbage Collector | Worker Threads Used |
+    | ----------------- | ------------------------ |
+    | Parallel GC | ParallelGCThreads  |
+    | CMS GC | ParallelGCThreads ConcGCThreads |
+    | G1 GC | ParallelGCThreads ConcGCThreads G1ConcRefinementThreads |
+
+    | 名称            | 选项控制(-XX:)      | 作用                  |
+    | --------------- | ----------------- | ----------------- |
+    | ParallelGC Thread | ParallelGCThreads | GC的并行工作现成，专门用于独占阶段的工作，比如拷贝存货对象 |
+    | ParallelMarkingThreads | ConcGCThreads | 并行标记阶段的并行线程，由主控现成和工作现成组成，可同应用程序并行执行 |
+    | G1ConcurrentRedinementThreads | G1ConcRefinementThreads | 和应用程序一起运行，用于更新RSet |
+
+18. -XX:+G1UseAdaptiveConcRefinement
+
+      默认开启，动态计算GC中-XX:G1ConcRefinementGreenZone、-XX:G1ConcRefinementYellowZone、-XX:G1ConcRefinementRedZone的值
+
+19. -XX:GCTimeRatio
+
+      Java应用线程花费的时间与GC线程花费时间的比率
+
+20. -XX:+HeapDumpBeforeFullGC / -XX:+HeapDumpAfterFullGC
+
+21. -XX:InitiatingHeapOccupancyPercent=45
+
+22. -XX:+useStringDedulplication
+
+      默认不启用，对Java String对象去重
+
+23. -XX:StringDeduplicationAgeThreshold
+
+      默认值为3，字符串对象年龄超过设定阙值或者到老年代Region后成为去重候选对象，只做一次去重操作
+
+24. -XX:+PrintStringdeduplicationStatistics
+
+      默认关闭，可根据统计数据查看字符串去重后是否节约了大量堆内存空间
+
+25. -XX:+G1UseAdaptiveHOP
+
+      JDK9选项，通过动态调节标记阶段开始的时间，以达到提升应用程序吞吐量的目标
+
+26. -XX:MaxGCPauseMills
+
+      目标停顿时间，默认是200mx，G1 GC会尽力确保年轻代的回收时间保持在目标停顿时间内
+
+27. -XX:MinHeapFreeRatio
+
+      设置堆内存里可以空闲的最小的内存空间大小，默认为堆内存的40%
+
+28. -XX:MaxHeapFreeRatio
+
+      设置堆内存里可以空闲的最大的内存空间大小，默认为堆内存的70%
+
+29. -XX:+PrintAdaptiveSizePolicy
+
+      设置是否开启堆内存大小变化的相应记录信息打印
+
+30. -XX:+ResizePLAB
+
+31. -XX:+ResizeTLAB
+
+32. -XX:+ClassUnloadingWithConcurrentMark
+
+33. -XX:+ClassUnloading
+
+34. -XX:+UnlockDiagnosticVMOptions -XX:PrintFlagsFinal
+
+35. -XX:+UnlockExperimentVMOptions -XX:PrintFlagsFinal
+
+36. -XX:+UnlockCommericalFeatures
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
+
+```
