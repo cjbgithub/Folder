@@ -1028,6 +1028,28 @@ GID：group identification
 
 # 7. Iptables与Firewall防火墙
 
+```python
+# 查看防火墙
+[root@localhost ~]# firewall-cmd --state
+[root@localhost ~]# systemctl status firewald.service
+# 关闭防火墙
+[root@localhost ~]# systemctl stop firewald.service
+# 开启防火墙
+[root@localhost ~]# systemctl start firewald.service
+# 重启防火墙
+[root@localhost ~]# firewall-cmd --reload
+# 查看端口是否开启
+[root@localhost ~]# firewall-cmd --query-port=3306/tcp
+# 永久关闭防火墙
+[root@localhost ~]# systemctl disable firewald.service
+# 永久开启防火墙
+[root@localhost ~]# systemctl enable firewald.service
+```
+
+
+
+
+
 
 
 
