@@ -7,17 +7,17 @@ regedit -> HKEY_LOCAL_MACHINE->SOFTWARE->Microsoft->Windows->CurrentVersion -> �
 计算机保存信息的戒指：
 
 + 内部存储器
-  - 寄存器
-  - 高速缓冲存储器（Cache）
-  - 主存储器
+    - 寄存器
+    - 高速缓冲存储器（Cache）
+    - 主存储器
 + 外部存储器
-  + 磁盘
-    - 软盘（A、B）
-    - 硬盘（C...）
-      + 固态硬盘SSD
-      + 机械硬盘HDD
-  + 光盘
-  + U盘
+    + 磁盘
+        - 软盘（A、B）
+        - 硬盘（C...）
+            + 固态硬盘SSD
+            + 机械硬盘HDD
+    + 光盘
+    + U盘
 
 硬盘分区是对硬盘的一种格式化，然后才能用硬盘保存信息
 + 主分区（活动分区）C
@@ -491,6 +491,88 @@ bitop操作返回的是字符串长度，一个字符串两个字节，8bit
 127.0.0.1:6379> 
 ```
 
+# JVM
+
+> Java虚拟机内存数据
+
+- 程序计数器：存放下一条的指令
+
+- 虚拟机栈：存放函数调用堆栈信息
+
+- 本地方法区：
+
+- Java堆：存放Java运行时的对象等数据
+
+- 方法区：存放程序的元数据
+
+​	处理器需要按照已有指令序列执行程序，计算机将指令地址存储在程序计数器（Program Counter Register）中，可确保准确获取下次执行的指令。
+
+​	虚拟机栈存放在随机存储器（随机存取存储器，Random Access Memory，RAM）中，通过上下移动堆栈指针动态调整内存空间大小。栈数据可共享，但是栈内数据大小及生存周期是确定的。主要存放基本类型变量及对象引用。
+
+​	栈访问速度快于堆，次于寄存器。
+
+​	堆是存放在RAM中的通用性内存池，是一个运行时数据区，用来存放Java对象（动态分配内存大小），由垃圾回收负责清理空间，缺点是访问速度较慢。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -527,7 +609,7 @@ bitop操作返回的是字符串长度，一个字符串两个字节，8bit
    并行是多个任务同时执行
 
    并发是多个任务交替执行，以达到宏观上同时执行的效果，而多个任务之间有可能还是串行的
-   
+
 5. 进程和线程
 
    进程是程序执行的一个实例，是资源非分配的最小单位。
@@ -595,7 +677,7 @@ bitop操作返回的是字符串长度，一个字符串两个字节，8bit
 
 1. -XX:+PrintGCDetails
 
-``` 
+```
 Heap 堆
  PSYoungGen 年轻代
   eden space 33280K, 92% used ...
@@ -607,12 +689,12 @@ Heap 堆
   class space used 595K, capacity 667K, committed 768K, reserved 1048576K
 ```
 2. -Xloggc
-``` 
+```
 Ordinary Object Pointer 普通指针对象，64位消耗的内存是32位的1.5倍。
 	-XX:+UseCompressedOops 在64 bit JVM中压缩指针，可以节约内存
 	-XX:+UseCompressedClassPointers 压缩类的元数据
 	-XX:-UseLargePagesIndividualAllocation 大页内存使用时自动启用
--XX:+PrintGCDetails -verbose:gc -Xloggc:gc.log -XX:+useSerialGC 
+-XX:+PrintGCDetails -verbose:gc -Xloggc:gc.log -XX:+useSerialGC
 ```
 3. -XX+useSerialGC
 4. -XX:+useParNewGC
