@@ -1,3 +1,26 @@
+# mavonEditor
+
+https://github.com/hinesboy/mavonEditor
+
+https://www.npmjs.com/package/mavon-editor-via
+
+> 安装mavonEditor
+
+```javascript
+npm i mavon-editor
+```
+
+> vue中使用mavonEditor
+
+```vue
+import Vue from 'vue'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+Vue.use(mavonEditor)
+
+<mavon-editor style="height: 100%" ishljg/>
+```
+
 # tui-editor
 
 TOASTUI Editor：GFM Markdown WYSIWYG Editor
