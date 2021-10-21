@@ -14,7 +14,7 @@ def get_revision_set(revision_set):
     set_del = set()
     for version in revision_set:
         # 1.获取version版本更改文件列表的svn命令
-        strings = "svn log -r " + version + " -v https://10.1.8.191/svn/shyycg2_src/trunk/dev/ysxtqx"
+        strings = "svn log -r " + version + " -v url"
         # print(strings)
 
         # 2.执行命令
@@ -103,7 +103,7 @@ def add_deal_content(history):
 if __name__ == "__main__":
     """ 主函数 """
     # =======A.项目编译输出路径======
-    output_directory = "E:\\4-work\\Idea2020\\ysxtqx\\target\\ysxtqx\\"
+    output_directory = "targetDirectory"
 
     # ========B.版本列表============
     # revisions = "8739 8740"
@@ -122,8 +122,8 @@ if __name__ == "__main__":
 
     dir_time = time.strftime('%Y%m%d', time.localtime(time.time()))
     logfile.write(
-        '收件人:  shiwei@wondersgroup.com\n'
-        '抄送人:  yushuyan@wondersgroup.com;caojinli@wondersgroup.com\n'
+        '收件人:  email\n'
+        '抄送人:  email\n'
         '主体：YSQX资政测试增量 YSQX资政正式增量\n'
         '您好：\n'
         '这是YSQX外网测试增量发布文件：CJB' + dir_time + 'YSXTQX-测试，附件包括增量代码包及模版文件；请注意查收！\n'
