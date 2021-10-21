@@ -7,17 +7,17 @@ regedit -> HKEY_LOCAL_MACHINE->SOFTWARE->Microsoft->Windows->CurrentVersion -> �
 计算机保存信息的戒指：
 
 + 内部存储器
-    - 寄存器
-    - 高速缓冲存储器（Cache）
-    - 主存储器
+  - 寄存器
+  - 高速缓冲存储器（Cache）
+  - 主存储器
 + 外部存储器
-    + 磁盘
-        - 软盘（A、B）
-        - 硬盘（C...）
-            + 固态硬盘SSD
-            + 机械硬盘HDD
-    + 光盘
-    + U盘
+  + 磁盘
+    - 软盘（A、B）
+    - 硬盘（C...）
+      + 固态硬盘SSD
+      + 机械硬盘HDD
+  + 光盘
+  + U盘
 
 硬盘分区是对硬盘的一种格式化，然后才能用硬盘保存信息
 + 主分区（活动分区）C

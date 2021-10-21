@@ -87,7 +87,7 @@ grant grant1, grant2, ... on 数据库对象 to 'username'@'host' identified by 
 revoke grant1, grant2, ... on 数据库对象 from 'username'@'host';
 ```
 
-# Mysql事务及视图
+# MySQL事务及视图
 
 > 事务介绍
 
@@ -146,7 +146,7 @@ mysql> alter view <视图名称> as select 语句;
 mysql> drop view <视图名称>;
 ```
 
-# Mysql索引及存储引擎
+# MySQL索引及存储引擎
 
 > 索引介绍
 
@@ -162,11 +162,11 @@ mysql> drop view <视图名称>;
 
 - unique：唯一索引，不可以出现相同内容，但是可以为NULL
 
-- primary key：主键索引
+- primary key：主键索引，每个表只能有一个主键索引，删除主键前必须先删除自增
 
 - foreign key：外键索引
 
-- full text：全文索引
+- full text：全文索引，词为单位，停止词（出现频率很高）对全文检索失效，char/varchar/text，忽略大小写
 
 - 混合索引
 
@@ -182,9 +182,16 @@ mysql> show idnex from 表名\G
 # 删除索引
 mysql> drop index 索引名称 on 表名;
 mysql> alter table 表名 drop index 索引名称;
+# 删除自增
+mysql> alter table test change id id int(17) unsigned zerofill not null;
+# 全文检索
+mysql> select * from 表名 where match (字段名) against ('检索内容');
+mysql> select * from 表名 where match (字段名) against ('检索内容*' in boolean mode);
+# +表示检索词1必须有，-表示检索词1必须无，检索词2可有可无
+mysql> select * from 表名 where match (字段名) against ('+/-检索1 检索2' in boolean mode);
+# 查匹配度
+mysql> select id, match (字段名) against ('检索内容') from 表名;
 ```
-
-
 
 > 存储引擎
 
@@ -204,35 +211,51 @@ mysql> alter table name engine='InnoDB';
 修改配置文件/etc/my.cnf在[mysqld]下添加default-storage-engine='InnoDB';保存后重启服务
 ```
 
-MyISAM   不支持事务；表级锁；保存表的具体行数；奔溃恢复不好；支持全文索引（full text）
+MyISAM   不支持事务、外键；表级锁；保存表的具体行数；奔溃恢复不好；支持全文索引（full text）
 
-InnoDB    支持事务；行级锁；不保存表的具体行数；奔溃恢复好；5.6版本以后支持全文索引；
+InnoDB    支持事务、外键；行级锁；不保存表的具体行数；奔溃恢复好；5.6版本以后支持全文索引；
 
 ​				  InnoDB在update不确定范围时做表级锁
 
+> 联合索引
+>
 
+联合索引又称为组合索引或复合索引
 
+```mysql
+# 创建联合索引
+mysql> alter table 表名 add index(字段1, 字段2, 字段3...);
+# 删除联合索引
+mysql> alter table 表名 drop 索引名称;
+```
 
+# MySQL慢查询及优化
 
+```mysql
+mysql> show variables like '%slow%';
+mysql> set global slow_query_log = on;
+mysql> show variables like '%slong%';
+```
 
+> 优化建议
 
+1. 尽量避免使用 select * from，尽量精确到具体的字段
+2. 尽量避免使用or，会使索引失效
+3. 加上limit限制行数
+4. 使用模糊查询时，%放在前面会使索引失效
+5. 要注意条件类型的转换，会使索引失效
 
+# MySQL备份
 
+备份类型：完全备份、部分备份（增量备份(基于上次备份)、差异备份(基于首次备份)）
 
+备份方式：逻辑备份（直接生产sql，效率低，节约空间）、物理备份（拷贝物理数据，速度较快，浪费空间）
 
+备份场景：热备份（不影响读写操作）、温备份（不影响读操作）、冷备份（不允许读写操作）
 
-
-
-
-
-
-
-
-
-
-
-
-
+```
+mysql> mysqldump -u 用户 -h host -p 密码 daname table | gzip > dir
+```
 
 
 
